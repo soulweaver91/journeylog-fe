@@ -6,17 +6,25 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "mobx": "^4.2.0",
     "mobx-react": "^5.0.0",
     "mobx-state-tree": "^2.0.4",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
     "react": "^16.3.2",
     "react-app-rewire-mobx": "^1.0.8",
     "react-app-rewired": "^1.5.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "reactstrap": "^5.0.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-app-rewired start",
+    "build-js": "react-app-rewired build",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm-run-all build-css build-js",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   }
