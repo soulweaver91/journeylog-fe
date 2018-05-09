@@ -1,0 +1,10 @@
+.navbar-nav {
+  .nav-item > span {
+    padding: $nav-link-padding-y ($nav-link-padding-x / 2);
+    display: inline-block;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-item > span {
+  color: $gray-200;
+}

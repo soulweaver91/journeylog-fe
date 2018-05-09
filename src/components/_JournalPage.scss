@@ -1,0 +1,16 @@
+.JournalPage {
+  margin-left: -$grid-gutter-width;
+
+  h2.JournalPage__title {
+    text-align: center;
+    width: 100%;
+    padding: .5em;
+    border-bottom: 1px solid $border-color;
+    margin: 0;
+  }
+
+  .JournalPage__content {
+    padding: ($grid-gutter-width / 2);
+    margin-top: -1px;
+  }
+}

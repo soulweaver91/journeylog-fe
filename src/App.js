@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { Provider } from 'mobx-react';
+import { BrowserRouter } from 'react-router-dom';
 
-import './App.css';
+import JourneyLog from "./components/JourneyRoutes";
 import RootStore from "./stores";
 
 const store = RootStore.create({
   JourneyStore: {
     journeys: [
       {
-        id: 1,
+        slug: 'test-journey-1',
         name: 'test journey 1',
         description: 'test journey description',
         journal: [
@@ -58,12 +58,26 @@ const store = RootStore.create({
         photos: [
           {
             name: "P4070001.JPG",
-            tags: [ 3 ]
+            tags: [ 3 ],
+            timestamp: '2018-01-01T10:00:00Z',
+            timezone: 'Asia/Tokyo'
+          },
+          {
+            name: "P4070002.JPG",
+            tags: [ ],
+            timestamp: '2018-01-01T11:00:00Z',
+            timezone: 'Asia/Tokyo'
+          },
+          {
+            name: "P4070003.JPG",
+            tags: [ 2 ],
+            timestamp: '2018-01-01T12:00:00Z',
+            timezone: 'Asia/Tokyo'
           }
         ]
       },
       {
-        id: 2,
+        slug: 'test-journey-2',
         name: 'test journey 2',
         journal: [
 
@@ -121,17 +135,13 @@ const store = RootStore.create({
 class App extends Component {
   render() {
     return (
-      <Provider {...store}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-        </div>
-      </Provider>
+      <BrowserRouter>
+        <Provider {...store}>
+          <div className="App">
+            <JourneyLog />
+          </div>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }

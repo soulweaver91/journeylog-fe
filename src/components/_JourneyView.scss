@@ -1,0 +1,26 @@
+.JourneyView {
+  margin: 1em 0;
+
+  .border > .row {
+    min-height: calc(100vh - 3rem - #{$nav-link-height} - #{$border-width * 2});
+  }
+
+  .nav.nav-tabs {
+    width: 100%;
+
+    .nav-item a {
+      border-radius: 0;
+      border-top: 0;
+    }
+
+    .nav-item:first-child a {
+      border-left: 0;
+    }
+  }
+
+  .tab-content {
+    border: $border-width solid $border-color;
+    margin-top: -1px;
+    padding: .5em 1em;
+  }
+}

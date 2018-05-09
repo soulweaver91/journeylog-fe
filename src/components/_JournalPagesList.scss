@@ -1,0 +1,12 @@
+.JournalPagesList {
+  border-right: 1px solid $border-color;
+  height: 100%;
+
+  > .list-group {
+    margin: -1px;
+
+    > .list-group-item:first-child, .list-group-item:last-child {
+      border-radius: 0;
+    }
+  }
+}

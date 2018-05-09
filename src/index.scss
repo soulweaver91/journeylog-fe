@@ -1,3 +1,11 @@
+$container-max-widths: (
+        "xl": 1600px
+);
+
+@import 'bootstrap/scss/bootstrap';
+@import './components/**/*.scss';
+
+
 body {
   margin: 0;
   padding: 0;

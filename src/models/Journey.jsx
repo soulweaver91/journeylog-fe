@@ -5,13 +5,20 @@ import MapPointVisit from "./MapPointVisit";
 import Photo from "./Photo";
 
 const Journey = types.model('Journey', {
-  id: types.identifier(types.number),
+  slug: types.identifier(types.string),
   name: types.string,
   description: types.optional(types.string, ""),
   journal: types.array(JournalPage),
   mapLocations: types.array(MapLocationVisit),
   mapRoute: types.array(MapPointVisit),
   photos: types.array(Photo)
-});
+}).views((self) => ({
+  get route() {
+    return `/journey/${self.slug}`;
+  },
+  findPage(date) {
+    return self.journal.find((page) => page.date === date)
+  }
+}));
 
 export default Journey;
