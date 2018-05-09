@@ -7,7 +7,7 @@ class JournalSection extends React.Component {
       <div className={classNames("JournalSection", {
         "JournalSection__with-location": !!this.props.location,
         "JournalSection__connected": this.props.connected && !!this.props.location,
-        "JournalSection__passthrough": this.props.location && !this.props.children
+        "JournalSection__passthrough": this.props.location && (!this.props.children || this.props.children.length === 0)
       })}>
         <div className="JournalSection__location-container">
           {this.props.location && <div className="JournalSection__location">

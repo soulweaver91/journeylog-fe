@@ -18,6 +18,9 @@ const Journey = types.model('Journey', {
   },
   findPage(date) {
     return self.journal.find((page) => page.date === date)
+  },
+  findPhoto(id) {
+    return self.photos.find((photo) => photo.name === id)
   }
 }));
 

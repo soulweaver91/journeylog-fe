@@ -15,7 +15,27 @@ const store = RootStore.create({
         journal: [
           {
             date: '2018-01-01',
-            text: 'day one journal page'
+            text: `[section]
+                Lorem ipsum dolor sit [b]amet[/b], consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.
+              [/section]
+              [section location="1" connected="true"]
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.  2
+                [photo]P4070001.JPG[/photo]
+              [/section]
+              [section location="2" connected="true"]
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.  3
+              [/section]
+              [section location="1" connected="true"][/section]
+              [section location="2" connected="true"][/section]
+              [section location="3"]
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.  3
+              [/section]
+              [section]
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.  4
+              [/section]
+              [section location="1"]
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada tempus ligula, at vulputate enim convallis sit amet. Curabitur aliquet ipsum non tortor faucibus pretium. Aliquam elementum fringilla dolor, non rhoncus dui lacinia quis. Aliquam viverra lorem eros, eu sodales ante vulputate eu. Phasellus eget ligula commodo, aliquet dui quis, faucibus turpis. Cras rutrum et lorem eu tempus. Aliquam pretium augue in nisl bibendum, tristique pulvinar sapien luctus.  5
+              [/section]`
           },
           {
             date: '2018-01-02',
