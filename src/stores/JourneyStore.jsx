@@ -7,6 +7,8 @@ const JourneyStore = types.model('JourneyStore', {
   return {
     findJourney: (id) => self.journeys.find((journey) => journey.slug === id)
   };
-});
+}).actions((self) => ({
+  loadJourneys: (journeys) => self.journeys = journeys
+}));
 
 export default JourneyStore;
