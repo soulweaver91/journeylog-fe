@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.0",
+    "chokidar-cli": "^1.2.0",
     "mobx": "^4.2.0",
     "mobx-react": "^5.0.0",
     "mobx-state-tree": "^2.0.4",
     "node-sass-chokidar": "^1.2.2",
+    "node-sass-glob-importer": "^5.1.2",
     "npm-run-all": "^4.1.2",
     "react": "^16.3.2",
     "react-app-rewire-mobx": "^1.0.8",
@@ -19,8 +21,8 @@
     "reactstrap": "^5.0.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ --importer node_modules/node-sass-glob-importer/dist/cli.js -o src/",
+    "watch-css": "npm run build-css && chokidar \"src/**/*.scss\" -c \"npm run build-css\"",
     "start-js": "react-app-rewired start",
     "build-js": "react-app-rewired build",
     "start": "npm-run-all -p watch-css start-js",
