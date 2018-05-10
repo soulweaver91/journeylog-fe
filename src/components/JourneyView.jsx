@@ -12,7 +12,7 @@ import JournalOverviewPage from "./JournalOverviewPage";
 @observer
 class JourneyView extends React.Component {
 	render() {
-	  const journey = this.props.JourneyStore.findJourney(this.props.match.params.id);
+	  const journey = this.props.journeyStore.findJourney(this.props.match.params.id);
 
 		return <div>
       <JourneyNavbar journey={journey} />
@@ -48,4 +48,4 @@ class JourneyView extends React.Component {
 	}
 }
 
-export default inject('JourneyStore')(JourneyView);
+export default inject('journeyStore')(JourneyView);

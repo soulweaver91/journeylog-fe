@@ -7,24 +7,26 @@ import RootStore from "./stores";
 import RequestState from "./stores/util/RequestState";
 
 const store = RootStore.create({
-  JourneyStore: {
+  journeyStore: {
     journeys: []
   },
-  TagStore: {
+  tagStore: {
     tags: []
   },
-  MapLocationStore: {
+  mapLocationStore: {
     mapLocations: []
   }
 });
 store.bootstrap();
+
+const { status, ...childStores } = store;
 
 @observer
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Provider {...store}>
+        <Provider {...childStores}>
           <div className="App">
             {store.status === RequestState.LOADED ? <JourneyLog /> : <div className="align-content-center">Loading...</div>}
           </div>

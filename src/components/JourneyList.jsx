@@ -10,7 +10,7 @@ class JourneyList extends React.Component {
 			<div>
 				Journeys
 				<ListGroup>
-          {this.props.JourneyStore.journeys.map((journey) => (
+          {this.props.journeyStore.journeys.map((journey) => (
             <ListGroupItem key={journey.slug} tag={Link} to={journey.route}>
               {journey.name}
             </ListGroupItem>
@@ -25,4 +25,4 @@ JourneyList.propTypes = {
   // JourneyStore:
 };
 
-export default inject('JourneyStore')(JourneyList);
+export default inject('journeyStore')(JourneyList);
