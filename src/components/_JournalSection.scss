@@ -30,6 +30,29 @@
     }
   }
 
+  .JournalSection__location-label {
+    small {
+      display: block;
+      font-size: 60%;
+    }
+  }
+
+  &.JournalSection__with-other-names {
+    margin-top: 1em;
+
+    .JournalSection__location-label {
+      margin-top: -0.4em;
+    }
+  }
+
+  &.JournalSection__with-other-names.JournalSection__passthrough {
+    margin-top: 0;
+
+    .JournalSection__location-label {
+      margin-top: 0.5em;
+    }
+  }
+
   &.JournalSection__connected .JournalSection__location-container {
     background-image: linear-gradient(to right,
             transparent,

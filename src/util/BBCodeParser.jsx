@@ -7,13 +7,18 @@ export const BBCodeContext = React.createContext();
 
 class SectionTag extends Tag {
   toReact() {
-    const attributes = {
-      location: this.params.location || undefined,
-      connected: this.params.connected === "true" || false
-    };
-
     return (
-      <JournalSection {...attributes}>{this.getComponents()}</JournalSection>
+      <BBCodeContext.Consumer>
+        {(context) => {
+          const attributes = {
+            location: context.mapLocationStore.findLocation(this.params.location) || undefined,
+            connected: this.params.connected === "true" || false
+          };
+
+          return (<JournalSection {...attributes}>{this.getComponents()}</JournalSection>);
+
+        }}
+      </BBCodeContext.Consumer>
     );
   }
 }

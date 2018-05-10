@@ -6,6 +6,7 @@ import Util from "../util/Util";
 import JournalPageMap from "./JournalPageMap";
 import Gallery from "./Gallery";
 import parser, { BBCodeContext } from '../util/BBCodeParser';
+import {inject} from "mobx-react";
 
 class JournalPage extends React.Component {
   tabs = [
@@ -47,7 +48,8 @@ class JournalPage extends React.Component {
             <Route path={`${this.props.match.url}/journal`} render={() => (<div>
               <BBCodeContext.Provider value={{
                 journey: this.props.journey,
-                page: this.props.page
+                page: this.props.page,
+                mapLocationStore: this.props.mapLocationStore
               }}>
                 {parser.toReact(this.props.page.text)}
               </BBCodeContext.Provider>
@@ -62,4 +64,4 @@ class JournalPage extends React.Component {
   }
 }
 
-export default JournalPage;
+export default inject('mapLocationStore')(JournalPage);
