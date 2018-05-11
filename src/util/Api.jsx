@@ -1,10 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 class Api {
   axiosInterface = null;
 
   constructor({ baseURL }) {
-
     this.axiosInterface = axios.create({
       baseURL
     });
@@ -12,7 +11,9 @@ class Api {
 
   request(url, params) {
     // params may be modified here later
-    return this.axiosInterface.request(url, params).then((response) => Promise.resolve(response.data));
+    return this.axiosInterface
+      .request(url, params)
+      .then((response) => Promise.resolve(response.data));
   }
 }
 

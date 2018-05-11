@@ -1,11 +1,8 @@
-$container-max-widths: (
-        "xl": 1600px
-);
+$container-max-widths: ("xl": 1600px);
 $border-radius: 0;
 
-@import 'bootstrap/scss/bootstrap';
-@import './components/**/*.scss';
-
+@import "bootstrap/scss/bootstrap";
+@import "./components/**/*.scss";
 
 body {
   margin: 0;

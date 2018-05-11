@@ -1,5 +1,5 @@
-import React from 'react';
-import {Card, Input, Label} from "reactstrap";
+import React from "react";
+import { Card, Input, Label } from "reactstrap";
 import PhotoCard from "./PhotoCard";
 
 class Gallery extends React.Component {
@@ -12,7 +12,9 @@ class Gallery extends React.Component {
         </Label>
 
         <div className="Gallery__photos">
-          {this.props.photos.map((photo) => <PhotoCard key={photo.name} photo={photo} />)}
+          {this.props.photos.map((photo) => (
+            <PhotoCard key={photo.name} photo={photo} />
+          ))}
         </div>
       </div>
     );

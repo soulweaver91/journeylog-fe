@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Provider, observer } from 'mobx-react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Provider, observer } from "mobx-react";
+import { BrowserRouter } from "react-router-dom";
 
 import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
@@ -28,7 +28,11 @@ class App extends Component {
       <BrowserRouter>
         <Provider {...childStores}>
           <div className="App">
-            {store.status === RequestState.LOADED ? <JourneyLog /> : <div className="align-content-center">Loading...</div>}
+            {store.status === RequestState.LOADED ? (
+              <JourneyLog />
+            ) : (
+              <div className="align-content-center">Loading...</div>
+            )}
           </div>
         </Provider>
       </BrowserRouter>

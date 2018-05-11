@@ -1,7 +1,7 @@
-import { types } from 'mobx-state-tree';
+import { types } from "mobx-state-tree";
 import MapCoordinates from "./MapCoordinates";
 
-const MapPointVisit = types.model('MapPointVisit', {
+const MapPointVisit = types.model("MapPointVisit", {
   coords: MapCoordinates,
   timestamp: types.string
 });

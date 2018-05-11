@@ -1,5 +1,5 @@
-import React from 'react';
-import { Parser, Tag } from 'bbcode-to-react';
+import React from "react";
+import { Parser, Tag } from "bbcode-to-react";
 import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
 
@@ -11,12 +11,17 @@ class SectionTag extends Tag {
       <BBCodeContext.Consumer>
         {(context) => {
           const attributes = {
-            location: context.mapLocationStore.findLocation(this.params.location) || undefined,
+            location:
+              context.mapLocationStore.findLocation(this.params.location) ||
+              undefined,
             detached: this.params.detached === "true" || false
           };
 
-          return (<JournalSection {...attributes}>{this.getComponents()}</JournalSection>);
-
+          return (
+            <JournalSection {...attributes}>
+              {this.getComponents()}
+            </JournalSection>
+          );
         }}
       </BBCodeContext.Consumer>
     );
@@ -29,17 +34,15 @@ class PhotoTag extends Tag {
 
     return (
       <BBCodeContext.Consumer>
-        {(context) => (
-          <PhotoCard photo={context.journey.findPhoto(photoId)} />
-        )}
+        {(context) => <PhotoCard photo={context.journey.findPhoto(photoId)} />}
       </BBCodeContext.Consumer>
     );
   }
 }
 
-const parser = new Parser(['b', 'i', 's', 'list', '*', 'quote']);
+const parser = new Parser(["b", "i", "s", "list", "*", "quote"]);
 
-parser.registerTag('section', SectionTag);
-parser.registerTag('photo', PhotoTag);
+parser.registerTag("section", SectionTag);
+parser.registerTag("photo", PhotoTag);
 
 export default parser;

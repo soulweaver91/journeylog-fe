@@ -1,11 +1,9 @@
-import React from 'react';
-import {Card} from "reactstrap";
+import React from "react";
+import { Card } from "reactstrap";
 
 class JournalPageMap extends React.Component {
   render() {
-    return (
-      <div className="JournalPageMap">map</div>
-    );
+    return <div className="JournalPageMap">map</div>;
   }
 }
 

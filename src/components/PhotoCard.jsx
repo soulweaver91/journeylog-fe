@@ -1,5 +1,5 @@
-import React from 'react';
-import {Card} from "reactstrap";
+import React from "react";
+import { Card } from "reactstrap";
 
 class PhotoCard extends React.PureComponent {
   render() {
@@ -7,11 +7,7 @@ class PhotoCard extends React.PureComponent {
       return null;
     }
 
-    return (
-      <Card className="PhotoCard">
-        {this.props.photo.name}
-      </Card>
-    );
+    return <Card className="PhotoCard">{this.props.photo.name}</Card>;
   }
 }
 

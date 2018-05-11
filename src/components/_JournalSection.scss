@@ -6,7 +6,7 @@
   .JournalSection__location-container {
     width: 4em;
     flex: 0 0 auto;
-    padding: .5em;
+    padding: 0.5em;
     position: relative;
     top: 1em;
 
@@ -54,12 +54,15 @@
   }
 
   .JournalSection__location-container {
-    background-image: linear-gradient(to right,
-            transparent,
-            transparent (2em - $journal-location-line-width / 2),
-            $gray-500 (2em - $journal-location-line-width / 2),
-            $gray-500 (2em + $journal-location-line-width / 2),
-            transparent (2em + $journal-location-line-width / 2), transparent);
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      transparent (2em - $journal-location-line-width / 2),
+      $gray-500 (2em - $journal-location-line-width / 2),
+      $gray-500 (2em + $journal-location-line-width / 2),
+      transparent (2em + $journal-location-line-width / 2),
+      transparent
+    );
   }
   &.JournalSection__detached .JournalSection__location-container {
     background-image: none;

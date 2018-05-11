@@ -9,21 +9,26 @@
 
     .JourneyList__item-inner {
       padding: 2em;
-      background: linear-gradient(to right, white, rgba(255,255,255,0) 50%);
+      background: linear-gradient(to right, white, rgba(255, 255, 255, 0) 50%);
 
-      &, & a {
+      &,
+      & a {
         color: black;
         text-shadow: 0 0 1px white, 0 0 2px white, 0 0 4px white, 0 0 4px white;
       }
 
       &:hover {
-        background: linear-gradient(to right, white, rgba(255,255,255,0.3) 50%);
+        background: linear-gradient(
+          to right,
+          white,
+          rgba(255, 255, 255, 0.3) 50%
+        );
 
-        &, & a {
+        &,
+        & a {
           color: $gray-800;
         }
       }
-
     }
   }
 }
