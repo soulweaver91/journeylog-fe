@@ -18,14 +18,14 @@
       position: relative;
       top: -2em;
       z-index: 1;
-      box-shadow: 0 0.25em $gray-500;
+      box-shadow: 0 0.25em;
       color: $gray-500;
       text-align: center;
       line-height: 3em;
       border: $journal-location-line-width solid $gray-500;
 
       .JournalSection__location-icon {
-        font-size: 2em;
+        font-size: 1.5em;
       }
     }
   }
@@ -74,11 +74,11 @@
       height: 1.6em;
       top: -0.6em;
       margin: 0 auto;
-      box-shadow: 0 0.15em $gray-500;
+      box-shadow: 0 0.15em;
 
       .JournalSection__location-icon {
-        text-align: left;
-        text-indent: -50000px;
+        line-height: 2em;
+        font-size: 0.75em;
       }
     }
 

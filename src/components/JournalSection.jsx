@@ -1,16 +1,17 @@
 import React from "react";
 import classNames from "classnames";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
 class JournalSection extends React.Component {
   render() {
+    const { location, detached, children } = this.props;
+
     const hasOtherNames =
-      this.props.location &&
-      this.props.location.otherNames &&
-      this.props.location.otherNames.size > 0;
+      location && location.otherNames && location.otherNames.size > 0;
 
     const otherNames = [];
     if (hasOtherNames) {
-      this.props.location.otherNames.forEach((name, lang) => {
+      location.otherNames.forEach((name, lang) => {
         otherNames.push(<span key={lang}>{name}</span>);
       });
     }
@@ -18,25 +19,33 @@ class JournalSection extends React.Component {
     return (
       <div
         className={classNames("JournalSection", {
-          "JournalSection__with-location": !!this.props.location,
-          JournalSection__detached: this.props.detached,
+          "JournalSection__with-location": !!location,
+          JournalSection__detached: detached,
           JournalSection__passthrough:
-            this.props.location &&
-            (!this.props.children || this.props.children.length === 0),
+            location && (!children || children.length === 0),
           "JournalSection__with-other-names": hasOtherNames
         })}
       >
         <div className="JournalSection__location-container">
-          {this.props.location && (
-            <div className="JournalSection__location">
-              <div className="JournalSection__location-icon">★</div>
+          {location && (
+            <div
+              className="JournalSection__location"
+              style={{
+                backgroundColor: location.backgroundColor,
+                color: location.accentColor,
+                borderColor: location.accentColor
+              }}
+            >
+              <div className="JournalSection__location-icon">
+                <FontAwesomeIcon icon={location.icon || "star"} />
+              </div>
             </div>
           )}
         </div>
         <div className="JournalSection__text">
-          {this.props.location && (
+          {location && (
             <h3 className="JournalSection__location-label">
-              {this.props.location.name}
+              {location.name}
               {hasOtherNames && (
                 <small className="JournalSection__location-other-names">
                   {otherNames}
@@ -44,7 +53,7 @@ class JournalSection extends React.Component {
               )}
             </h3>
           )}
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
