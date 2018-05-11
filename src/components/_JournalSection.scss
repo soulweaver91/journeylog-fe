@@ -53,13 +53,16 @@
     }
   }
 
-  &.JournalSection__connected .JournalSection__location-container {
+  .JournalSection__location-container {
     background-image: linear-gradient(to right,
             transparent,
             transparent (2em - $journal-location-line-width / 2),
             $gray-500 (2em - $journal-location-line-width / 2),
             $gray-500 (2em + $journal-location-line-width / 2),
             transparent (2em + $journal-location-line-width / 2), transparent);
+  }
+  &.JournalSection__detached .JournalSection__location-container {
+    background-image: none;
   }
 
   &.JournalSection__passthrough {
@@ -90,5 +93,10 @@
   &:not(.JournalSection__with-location) {
     margin-top: 1em;
     margin-bottom: 1em;
+
+    .JournalSection__location-container {
+      top: 0;
+      padding-top: 2em;
+    }
   }
 }

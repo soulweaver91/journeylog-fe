@@ -15,7 +15,7 @@ class JournalSection extends React.Component {
     return (
       <div className={classNames("JournalSection", {
         "JournalSection__with-location": !!this.props.location,
-        "JournalSection__connected": this.props.connected && !!this.props.location,
+        "JournalSection__detached": this.props.detached,
         "JournalSection__passthrough": this.props.location && (!this.props.children || this.props.children.length === 0),
         "JournalSection__with-other-names": hasOtherNames
       })}>
