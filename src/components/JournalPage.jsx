@@ -25,16 +25,22 @@ class JournalPage extends React.Component {
   ];
 
   render() {
-    const activePage = Util.getNextPathElement(this.props.location, this.props.match);
+    const { journey, match, location, page, mapLocationStore } = this.props;
+
+    const activePage = Util.getNextPathElement(location, match);
 
     return (
       <div className="JournalPage">
-        <h2 className="JournalPage__title">{this.props.match.params.day}</h2>
+        <h2 className="JournalPage__title" style={{
+          backgroundImage: journey.background ? `url(${journey.background})` : null
+        }}>
+          {journey.name}, {match.params.day}
+        </h2>
         <div className="JournalPage__nav">
           <Nav tabs>
             {this.tabs.map((tab) => (
               <NavItem key={tab.id}>
-                <NavLink tag={Link} to={`${this.props.match.url}/${tab.id}`} className={classNames({
+                <NavLink tag={Link} to={`${match.url}/${tab.id}`} className={classNames({
                   active: activePage === tab.id
                 })}>
                   {tab.text}
@@ -45,18 +51,18 @@ class JournalPage extends React.Component {
         </div>
         <div className="JournalPage__content">
           <Switch>
-            <Route path={`${this.props.match.url}/journal`} render={() => (<div>
+            <Route path={`${match.url}/journal`} render={() => (<div>
               <BBCodeContext.Provider value={{
-                journey: this.props.journey,
-                page: this.props.page,
-                mapLocationStore: this.props.mapLocationStore
+                journey,
+                page,
+                mapLocationStore
               }}>
-                {parser.toReact(this.props.page.text)}
+                {parser.toReact(page.text)}
               </BBCodeContext.Provider>
             </div>)} />
-            <Route path={`${this.props.match.url}/gallery`} render={() => <Gallery photos={this.props.page.photos} />} />
-            <Route path={`${this.props.match.url}/map`} render={() => <JournalPageMap />} />
-            <Redirect path={`${this.props.match.url}`} to={`${this.props.match.url}/journal`} />
+            <Route path={`${match.url}/gallery`} render={() => <Gallery photos={page.photos} />} />
+            <Route path={`${match.url}/map`} render={() => <JournalPageMap />} />
+            <Redirect path={`${match.url}`} to={`${match.url}/journal`} />
           </Switch>
         </div>
       </div>

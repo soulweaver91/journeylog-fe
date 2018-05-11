@@ -28,7 +28,11 @@ class JournalOverviewPage extends React.Component {
 
     return (
       <div className="JournalPage">
-        <h2 className="JournalPage__title">{journey.name}</h2>
+        <h2 className="JournalPage__title JournalPage__overview-title" style={{
+          backgroundImage: journey.background ? `url(${journey.background})` : null
+        }}>
+          {journey.name}
+        </h2>
         <div className="JournalPage__nav">
           <Nav tabs>
             {this.tabs.map((tab) => (

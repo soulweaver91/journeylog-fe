@@ -7,6 +7,14 @@
     padding: .5em;
     border-bottom: 1px solid $border-color;
     margin: 0;
+    background-position: center center;
+    background-size: cover;
+    color: black;
+    text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white;
+
+    &.JournalPage__overview-title {
+      padding: 4em .5em;
+    }
   }
 
   .JournalPage__content {

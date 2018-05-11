@@ -1,0 +1,29 @@
+.JourneyList {
+  max-width: 40em;
+  margin: 1em auto;
+
+  .JourneyList__item {
+    padding: 0;
+    background-position: center center;
+    background-size: cover;
+
+    .JourneyList__item-inner {
+      padding: 2em;
+      background: linear-gradient(to right, white, rgba(255,255,255,0) 50%);
+
+      &, & a {
+        color: black;
+        text-shadow: 0 0 1px white, 0 0 2px white, 0 0 4px white, 0 0 4px white;
+      }
+
+      &:hover {
+        background: linear-gradient(to right, white, rgba(255,255,255,0.3) 50%);
+
+        &, & a {
+          color: $gray-800;
+        }
+      }
+
+    }
+  }
+}

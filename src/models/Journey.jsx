@@ -11,7 +11,8 @@ const Journey = types.model('Journey', {
   journal: types.array(JournalPage),
   mapLocations: types.array(MapLocationVisit),
   mapRoute: types.array(MapPointVisit),
-  photos: types.array(Photo)
+  photos: types.array(Photo),
+  background: types.maybe(types.string)
 }).views((self) => ({
   get route() {
     return `/journey/${self.slug}`;

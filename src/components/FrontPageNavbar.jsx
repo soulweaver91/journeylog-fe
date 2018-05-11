@@ -1,6 +1,5 @@
 import React from 'react';
-import {Navbar, NavItem, NavLink, Nav} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Navbar, Nav} from "reactstrap";
 import {observer} from "mobx-react";
 import NavbarBrandItem from "./NavbarBrandItem";
 
@@ -10,14 +9,6 @@ class JourneyNavbar extends React.Component {
     return <Navbar color="dark" dark expand="xs">
       <Nav navbar>
         <NavbarBrandItem />
-        <NavItem>
-          <NavLink tag={Link} to="/">Back</NavLink>
-        </NavItem>
-        <NavItem>
-          <span>
-            Journey: {this.props.journey.name || "???"}
-          </span>
-        </NavItem>
       </Nav>
     </Navbar>;
   }

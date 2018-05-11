@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider, observer } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 
-import JourneyLog from "./components/JourneyRoutes";
+import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
 import RequestState from "./stores/util/RequestState";
 
