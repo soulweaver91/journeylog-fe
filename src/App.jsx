@@ -31,7 +31,7 @@ class App extends Component {
             {store.status === RequestState.LOADED ? (
               <JourneyLog />
             ) : (
-              <div className="align-content-center">Loading...</div>
+              <div className="center">Loading...</div>
             )}
           </div>
         </Provider>

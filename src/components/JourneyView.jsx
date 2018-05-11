@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import { inject, observer } from "mobx-react";
+import { Helmet } from "react-helmet";
 
 import JourneyNavbar from "./JourneyNavbar";
 import Util from "../util/Util";
@@ -18,6 +19,9 @@ class JourneyView extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <title>{journey.name} – JourneyLog</title>
+        </Helmet>
         <JourneyNavbar journey={journey} />
         <Container className="JourneyView">
           <div className="border">
