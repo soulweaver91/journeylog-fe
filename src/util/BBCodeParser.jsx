@@ -14,12 +14,35 @@ class SectionTag extends Tag {
             location:
               context.mapLocationStore.findLocation(this.params.location) ||
               undefined,
-            detached: this.params.detached === "true" || false
+            detached: this.params.detached === "true" || false,
+            startTime: this.params.startTime,
+            endTime: this.params.endTime
           };
 
           return (
             <JournalSection {...attributes}>
-              {this.getComponents()}
+              {this.getComponents().map((component) => {
+                if (typeof component === "string") {
+                  let parts = component.split(/\r?\n\r?\n/g);
+
+                  parts = parts.reduce((a, v, k) => {
+                    a.push(
+                      <React.Fragment key={"br_" + k}>
+                        <br />
+                      </React.Fragment>
+                    );
+                    a.push(<React.Fragment key={"v_" + k}>{v}</React.Fragment>);
+
+                    return a;
+                  }, []);
+
+                  parts.shift();
+
+                  return parts;
+                }
+
+                return component;
+              })}
             </JournalSection>
           );
         }}

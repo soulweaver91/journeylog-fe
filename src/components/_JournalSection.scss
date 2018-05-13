@@ -30,10 +30,21 @@
     }
   }
 
+  .JournalSection__text {
+    width: 100%;
+  }
+
   .JournalSection__location-label {
     small {
       display: block;
       font-size: 60%;
+    }
+
+    time {
+      float: right;
+      line-height: 1.5rem;
+      font-size: 1rem;
+      font-style: normal;
     }
   }
 
@@ -87,10 +98,10 @@
       font-style: italic;
       margin: 1em 0;
     }
+  }
 
-    + :not(.JournalSection__passthrough) {
-      margin-top: 1em;
-    }
+  &:not(.JournalSection__passthrough) {
+    margin-top: 1em;
   }
 
   &:not(.JournalSection__with-location) {

@@ -4,7 +4,7 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
 class JournalSection extends React.Component {
   render() {
-    const { location, detached, children } = this.props;
+    const { location, detached, startTime, endTime, children } = this.props;
 
     const hasOtherNames =
       location && location.otherNames && location.otherNames.size > 0;
@@ -45,6 +45,12 @@ class JournalSection extends React.Component {
         <div className="JournalSection__text">
           {location && (
             <h3 className="JournalSection__location-label">
+              {startTime && (
+                <time>
+                  {startTime}
+                  {endTime && <React.Fragment>– {endTime}</React.Fragment>}
+                </time>
+              )}
               {location.name}
               {hasOtherNames && (
                 <small className="JournalSection__location-other-names">
