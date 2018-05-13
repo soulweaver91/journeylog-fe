@@ -1,12 +1,13 @@
 import { types } from "mobx-state-tree";
-import MapCoordinates from "./MapCoordinates";
 import Tag from "./Tag";
 import { DateTime } from "luxon";
+import { getCoords } from "./util/SharedFunctions";
 
 const Photo = types
   .model("Photo", {
     name: types.identifier(types.string),
-    coords: types.maybe(MapCoordinates),
+    latitude: types.maybe(types.number),
+    longitude: types.maybe(types.number),
     description: types.maybe(types.string),
     tags: types.array(types.reference(Tag)),
     timestamp: types.string,
@@ -22,6 +23,9 @@ const Photo = types
       });
 
       return thisDate.hasSame(otherDate, "day");
+    },
+    get coords() {
+      return getCoords(self);
     }
   }));
 

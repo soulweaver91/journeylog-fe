@@ -67,8 +67,8 @@ class JournalOverviewPage extends React.Component {
                   <p>{journey.description}</p>
                   <ul>
                     <li>{journey.photos.length} photos</li>
-                    <li>{journey.mapLocations.length} map location visits</li>
-                    <li>{journey.mapRoute.length} map timeline points</li>
+                    <li>{journey.map_locations.length} map location visits</li>
+                    <li>{journey.map_route.length} map timeline points</li>
                     <li>{journey.journal.length} journal pages</li>
                   </ul>
                 </div>

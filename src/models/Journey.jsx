@@ -10,8 +10,8 @@ const Journey = types
     name: types.string,
     description: types.optional(types.string, ""),
     journal: types.array(JournalPage),
-    mapLocations: types.array(MapLocationVisit),
-    mapRoute: types.array(MapPointVisit),
+    map_locations: types.optional(types.array(MapLocationVisit), []),
+    map_route: types.optional(types.array(MapPointVisit), []),
     photos: types.array(Photo),
     background: types.maybe(types.string)
   })
