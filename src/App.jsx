@@ -25,7 +25,7 @@ const { status, ...childStores } = store;
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.REACT_APP_URL_PREFIX}>
         <Provider {...childStores}>
           <div className="App">
             {store.status === RequestState.LOADED ? (
