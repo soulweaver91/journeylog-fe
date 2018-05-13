@@ -56,6 +56,11 @@ class JournalPage extends React.Component {
                 </NavLink>
               </NavItem>
             ))}
+            <NavItem className="d-md-none ml-auto">
+              <NavLink tag={Link} to={`${journey.route}`}>
+                Back
+              </NavLink>
+            </NavItem>
           </Nav>
         </div>
         <div className="JournalPage__content">

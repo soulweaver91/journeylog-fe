@@ -18,13 +18,13 @@ class JourneyView extends React.Component {
     );
 
     return (
-      <div>
+      <div className="JourneyView__container">
         <Helmet>
           <title>{journey.name} – JourneyLog</title>
         </Helmet>
         <JourneyNavbar journey={journey} />
         <Container className="JourneyView">
-          <div className="border">
+          <div className="JourneyView__inner border">
             {!journey ? (
               <Row>
                 <Col xs="12">
@@ -34,7 +34,7 @@ class JourneyView extends React.Component {
               </Row>
             ) : (
               <Row>
-                <Col xs="12" md="3">
+                <Col xs="12" md="3" className="d-none d-md-block">
                   <JournalPagesList
                     journey={journey}
                     activePage={Util.getNextPathElement(

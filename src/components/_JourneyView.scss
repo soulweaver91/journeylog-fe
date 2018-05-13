@@ -1,8 +1,32 @@
+.JourneyView__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .JourneyView {
-  margin: 1em 0;
+  padding: 1em;
+  height: 100%;
+  overflow: hidden;
 
   .border > .row {
-    min-height: calc(100vh - 3rem - #{$nav-link-height} - #{$border-width * 2});
+    height: 100%;
+    margin: 0;
+
+    > * {
+      max-height: 100%;
+      height: 100%;
+      padding: 0;
+    }
+  }
+
+  .JourneyView__inner {
+    overflow: hidden;
+    height: 100%;
   }
 
   .nav.nav-tabs {

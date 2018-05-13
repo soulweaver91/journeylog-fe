@@ -56,6 +56,9 @@ class JournalOverviewPage extends React.Component {
                 </NavLink>
               </NavItem>
             ))}
+            <NavItem>
+              <div className="d-md-none">TODO mobile navigation</div>
+            </NavItem>
           </Nav>
         </div>
         <div className="JournalPage__content">

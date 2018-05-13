@@ -1,5 +1,7 @@
 .JournalPage {
-  margin-left: -$grid-gutter-width;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   h2.JournalPage__title {
     text-align: center;
@@ -14,12 +16,18 @@
 
     &.JournalPage__overview-title {
       padding: 4em 0.5em;
+
+      @media (max-height: 600px) {
+        padding: 0.5em;
+      }
     }
   }
 
   .JournalPage__content {
     padding: ($grid-gutter-width / 2);
     margin-top: -1px;
+    height: 100%;
+    overflow: auto;
 
     br {
       margin: 0 0 0.75em 0;
