@@ -1,4 +1,22 @@
 .PhotoCard {
-  width: 200px;
   margin: 0.25em;
+  text-align: center;
+  font-size: 0.75rem;
+
+  a {
+    cursor: pointer;
+    color: $body-color;
+
+    &:hover,
+    &:active {
+      background-color: $gray-200;
+    }
+  }
+
+  .PhotoCard__img-container {
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+  }
 }

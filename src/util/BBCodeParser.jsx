@@ -4,7 +4,7 @@ import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
 import SimpleTag from "bbcode-to-react/lib/tags/simple";
 
-export const BBCodeContext = React.createContext();
+const BBCodeContext = React.createContext();
 
 const convertNewlines = (component) => {
   if (typeof component === "string") {
@@ -60,7 +60,9 @@ class PhotoTag extends Tag {
 
     return (
       <BBCodeContext.Consumer>
-        {(context) => <PhotoCard photo={context.journey.findPhoto(photoId)} />}
+        {(context) => (
+          <PhotoCard photo={context.journey.findPhoto(photoId)} size={96} />
+        )}
       </BBCodeContext.Consumer>
     );
   }
@@ -73,9 +75,13 @@ class QuoteTag extends Tag {
 }
 
 const parser = new Parser(["b", "i", "s", "list", "*", "url"]);
+const liteParser = new Parser(["b", "i", "s", "list", "*", "url"]);
 
 parser.registerTag("section", SectionTag);
 parser.registerTag("photo", PhotoTag);
 parser.registerTag("quote", QuoteTag);
 
+liteParser.registerTag("quote", QuoteTag);
+
 export default parser;
+export { liteParser, BBCodeContext };
