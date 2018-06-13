@@ -30,6 +30,10 @@ class App extends Component {
           <div className="App">
             {store.status === RequestState.LOADED ? (
               <JourneyLog />
+            ) : store.status === RequestState.ERROR ? (
+              <div className="center">
+                JourneyLog is currently unavailable. Please try again later.
+              </div>
             ) : (
               <div className="center">Loading...</div>
             )}
