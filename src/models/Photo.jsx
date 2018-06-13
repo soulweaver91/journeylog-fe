@@ -5,11 +5,12 @@ import { getCoords } from "./util/SharedFunctions";
 
 const Photo = types
   .model("Photo", {
-    name: types.identifier(types.string),
+    filename: types.identifier(types.string),
+    name: types.string,
     latitude: types.maybe(types.number),
     longitude: types.maybe(types.number),
     description: types.maybe(types.string),
-    tags: types.array(types.reference(Tag)),
+    tags: types.maybe(types.array(types.reference(Tag))),
     timestamp: types.string,
     timezone: types.optional(types.string, "UTC")
   })
