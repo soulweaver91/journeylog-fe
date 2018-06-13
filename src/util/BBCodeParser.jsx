@@ -2,8 +2,32 @@ import React from "react";
 import { Parser, Tag } from "bbcode-to-react";
 import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
+import SimpleTag from "bbcode-to-react/lib/tags/simple";
 
 export const BBCodeContext = React.createContext();
+
+const convertNewlines = (component) => {
+  if (typeof component === "string") {
+    let parts = component.split(/\r?\n\r?\n/g);
+
+    parts = parts.reduce((a, v, k) => {
+      a.push(
+        <React.Fragment key={"br_" + k}>
+          <br />
+        </React.Fragment>
+      );
+      a.push(<React.Fragment key={"v_" + k}>{v}</React.Fragment>);
+
+      return a;
+    }, []);
+
+    parts.shift();
+
+    return parts;
+  }
+
+  return component;
+};
 
 class SectionTag extends Tag {
   toReact() {
@@ -21,28 +45,7 @@ class SectionTag extends Tag {
 
           return (
             <JournalSection {...attributes}>
-              {this.getComponents().map((component) => {
-                if (typeof component === "string") {
-                  let parts = component.split(/\r?\n\r?\n/g);
-
-                  parts = parts.reduce((a, v, k) => {
-                    a.push(
-                      <React.Fragment key={"br_" + k}>
-                        <br />
-                      </React.Fragment>
-                    );
-                    a.push(<React.Fragment key={"v_" + k}>{v}</React.Fragment>);
-
-                    return a;
-                  }, []);
-
-                  parts.shift();
-
-                  return parts;
-                }
-
-                return component;
-              })}
+              {this.getComponents().map(convertNewlines)}
             </JournalSection>
           );
         }}
@@ -63,9 +66,16 @@ class PhotoTag extends Tag {
   }
 }
 
-const parser = new Parser(["b", "i", "s", "list", "*", "quote"]);
+class QuoteTag extends Tag {
+  toReact() {
+    return <blockquote>{this.getComponents().map(convertNewlines)}</blockquote>;
+  }
+}
+
+const parser = new Parser(["b", "i", "s", "list", "*", "url"]);
 
 parser.registerTag("section", SectionTag);
 parser.registerTag("photo", PhotoTag);
+parser.registerTag("quote", QuoteTag);
 
 export default parser;
