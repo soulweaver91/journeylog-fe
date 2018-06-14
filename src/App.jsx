@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
 import RequestState from "./stores/util/RequestState";
-import PhotoModal from "./components/PhotoModal";
 
 const store = RootStore.create({
   journeyStore: {
@@ -42,7 +41,6 @@ class App extends Component {
             ) : (
               <div className="center">Loading...</div>
             )}
-            <PhotoModal />
           </div>
         </Provider>
       </BrowserRouter>

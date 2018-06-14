@@ -9,6 +9,7 @@ import Util from "../util/Util";
 import JournalPage from "./JournalPage";
 import JournalPagesList from "./JournalPagesList";
 import JournalOverviewPage from "./JournalOverviewPage";
+import PhotoModal from "./PhotoModal";
 
 @observer
 class JourneyView extends React.Component {
@@ -80,6 +81,7 @@ class JourneyView extends React.Component {
             )}
           </div>
         </Container>
+        <PhotoModal journey={journey} />
       </div>
     );
   }

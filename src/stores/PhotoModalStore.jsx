@@ -1,5 +1,6 @@
 import { types } from "mobx-state-tree";
 import Photo from "../models/Photo";
+import Util from "../util/Util";
 
 const PhotoModalStore = types
   .model("PhotoModalStore", {
@@ -10,9 +11,11 @@ const PhotoModalStore = types
     open: (photo) => {
       self.photo = photo;
       self.isOpen = true;
+      document.location.hash = `#photo:${self.photo.filename}`;
     },
     close: () => {
       self.isOpen = false;
+      Util.clearHash();
     }
   }));
 

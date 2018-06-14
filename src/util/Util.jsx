@@ -22,5 +22,12 @@ export default {
     }
 
     return size.toFixed(2) + " " + SI_PREFIXES[prefixIdx] + "B";
+  },
+  clearHash() {
+    window.history.pushState(
+      "",
+      document.title,
+      window.location.pathname + window.location.search
+    );
   }
 };

@@ -15,10 +15,30 @@ import { DateTime } from "luxon";
 import Util from "../util/Util";
 import { liteParser } from "../util/BBCodeParser";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { withRouter } from "react-router-dom";
 
+@withRouter
 @inject("photoModalStore")
 @observer
 class PhotoModal extends React.Component {
+  componentDidMount() {
+    this.openHash();
+  }
+
+  openHash = () => {
+    const hashData = window.document.location.hash.match(/^#photo:(.+)$/);
+
+    if (!hashData) {
+      return;
+    }
+
+    const photo = this.props.journey.findPhoto(hashData[1]);
+
+    if (photo) {
+      this.props.photoModalStore.open(photo);
+    }
+  };
+
   render() {
     const { photoModalStore } = this.props;
     const { photo } = photoModalStore;
