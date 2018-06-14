@@ -19,6 +19,9 @@ class PhotoCard extends React.PureComponent {
             e.preventDefault();
             photoModalStore.open(photo);
           }}
+          style={{
+            width: size || undefined
+          }}
         >
           {/* TODO */}
           <div
@@ -32,7 +35,9 @@ class PhotoCard extends React.PureComponent {
               height: size || undefined
             }}
           />
-          {photo.name}
+          <div className="PhotoCard__data-container">
+            <span>{photo.name}</span>
+          </div>
         </a>
       </Card>
     );
