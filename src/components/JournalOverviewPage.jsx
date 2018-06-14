@@ -5,6 +5,7 @@ import { Nav, NavItem, NavLink } from "reactstrap";
 import Util from "../util/Util";
 import Gallery from "./Gallery";
 import JournalPageMap from "./JournalPageMap";
+import { liteParser } from "../util/BBCodeParser";
 
 class JournalOverviewPage extends React.Component {
   tabs = [
@@ -67,7 +68,12 @@ class JournalOverviewPage extends React.Component {
               path={`${this.props.match.url}/journal`}
               render={() => (
                 <div>
-                  <p>{journey.description}</p>
+                  {/* TODO: hack */}
+                  <p>
+                    {liteParser.toReact(
+                      "[root]" + journey.description + "[/root]"
+                    )}
+                  </p>
                   <ul>
                     <li>{journey.photos.length} photos</li>
                     <li>{journey.map_locations.length} map location visits</li>

@@ -74,6 +74,12 @@ class QuoteTag extends Tag {
   }
 }
 
+class RootTag extends Tag {
+  toReact() {
+    return this.getComponents().map(convertNewlines);
+  }
+}
+
 const parser = new Parser(["b", "i", "s", "list", "*", "url"]);
 const liteParser = new Parser(["b", "i", "s", "list", "*", "url"]);
 
@@ -82,6 +88,7 @@ parser.registerTag("photo", PhotoTag);
 parser.registerTag("quote", QuoteTag);
 
 liteParser.registerTag("quote", QuoteTag);
+liteParser.registerTag("root", RootTag);
 
 export default parser;
 export { liteParser, BBCodeContext };
