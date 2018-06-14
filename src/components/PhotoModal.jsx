@@ -93,6 +93,14 @@ class PhotoModal extends React.Component {
                         {Util.formatFileSize(photo.filesize)}
                       </ListGroupItemText>
                     </ListGroupItem>
+                    {photo.name !== photo.filename && (
+                      <ListGroupItem>
+                        <ListGroupItemHeading>
+                          Original file name
+                        </ListGroupItemHeading>
+                        <ListGroupItemText>{photo.filename}</ListGroupItemText>
+                      </ListGroupItem>
+                    )}
                     <ListGroupItem>
                       <ListGroupItemHeading>Dimensions</ListGroupItemHeading>
                       <ListGroupItemText>
