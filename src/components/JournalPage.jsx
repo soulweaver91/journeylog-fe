@@ -24,6 +24,14 @@ class JournalPage extends React.Component {
     }
   ];
 
+  scrollContainer = null;
+
+  componentWillUpdate = (nextProps) => {
+    if (this.props.location.pathname !== nextProps.location.pathname) {
+      this.scrollContainer.scrollTo(0, 0);
+    }
+  };
+
   render() {
     const { journey, match, location, page, mapLocationStore } = this.props;
 
@@ -63,7 +71,10 @@ class JournalPage extends React.Component {
             </NavItem>
           </Nav>
         </div>
-        <div className="JournalPage__content">
+        <div
+          className="JournalPage__content"
+          ref={(el) => (this.scrollContainer = el)}
+        >
           <Switch>
             <Route
               path={`${match.url}/journal`}
