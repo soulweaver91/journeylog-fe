@@ -14,7 +14,7 @@ class PhotoCard extends React.PureComponent {
     return (
       <Card className="PhotoCard">
         <a
-          href="#"
+          href={photoModalStore.getHash(photo)}
           onClick={(e) => {
             e.preventDefault();
             photoModalStore.open(photo);
