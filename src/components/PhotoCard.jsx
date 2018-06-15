@@ -23,14 +23,10 @@ class PhotoCard extends React.PureComponent {
             width: size || undefined
           }}
         >
-          {/* TODO */}
           <div
             className="PhotoCard__img-container"
             style={{
-              backgroundImage: `url(http://home.soulweaver.fi/japan18/th/${photo.filename.replace(
-                /.jpg/i,
-                ".th.jpg"
-              )})`,
+              backgroundImage: `url(${photo.thumbUrl})`,
               width: size || undefined,
               height: size || undefined
             }}

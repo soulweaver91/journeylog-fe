@@ -10,7 +10,9 @@ const Photo = types
   .model("Photo", {
     filename: types.identifier(types.string),
     name: types.string,
+    hash: types.string,
     filesize: types.number,
+    confidentiality: types.number,
     latitude: types.maybe(types.number),
     longitude: types.maybe(types.number),
     description: types.maybe(types.string),
@@ -19,9 +21,12 @@ const Photo = types
     timezone: types.optional(types.string, "UTC"),
     iso_speed: types.maybe(types.string),
     focal_length: types.maybe(types.string),
+    f_value: types.maybe(types.string),
     exposure: types.maybe(types.string),
     camera_make: types.maybe(types.string),
     camera_model: types.maybe(types.string),
+    flash_fired: types.optional(types.boolean, false),
+    flash_manual: types.optional(types.boolean, false),
     width: types.number,
     height: types.number
   })
@@ -62,6 +67,16 @@ const Photo = types
     },
     get coords() {
       return getCoords(self);
+    },
+    get fullUrl() {
+      return `${process.env.REACT_APP_API_URL}photos/${self.hash}/${
+        self.filename
+      }`;
+    },
+    get thumbUrl() {
+      return `${process.env.REACT_APP_API_URL}photos/${self.hash}/thumb/${
+        self.filename
+      }`;
     }
   }));
 

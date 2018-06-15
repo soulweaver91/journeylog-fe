@@ -43,10 +43,6 @@ class PhotoModal extends React.Component {
     const { photoModalStore } = this.props;
     const { photo } = photoModalStore;
 
-    // TODO
-    const href =
-      photo && `http://home.soulweaver.fi/japan18/i/${photo.filename}`;
-
     return (
       <Modal isOpen={photoModalStore.isOpen} className="PhotoModal">
         {photo && (
@@ -57,7 +53,7 @@ class PhotoModal extends React.Component {
             <ModalBody>
               <Row>
                 <Col xs="12" sm="9" className="PhotoModal__photo">
-                  <img src={href} alt="" />
+                  <img src={photo.fullUrl} alt="" />
                 </Col>
                 <Col xs="12" sm="3" className="PhotoModal__attributes">
                   <ListGroup>
@@ -117,9 +113,15 @@ class PhotoModal extends React.Component {
                       <ListGroupItemText>
                         {photo.iso_speed && <p>ISO speed: {photo.iso_speed}</p>}
                         {photo.focal_length && (
-                          <p>Focal length: {photo.focal_length}</p>
+                          <p>Focal length: {photo.focal_length} mm</p>
                         )}
+                        {photo.f_value && <p>F-value: {photo.f_value}</p>}
                         {photo.exposure && <p>Exposure: {photo.exposure} s</p>}
+                        {photo.flash_fired && (
+                          <p>
+                            Flash: {photo.flash_manual ? "Manual" : "Automatic"}
+                          </p>
+                        )}
                       </ListGroupItemText>
                     </ListGroupItem>
                     <ListGroupItem>
@@ -157,7 +159,7 @@ class PhotoModal extends React.Component {
                         )}
                       </ListGroupItemText>
                     </ListGroupItem>
-                    <ListGroupItem tag="a" href={href} target="_blank">
+                    <ListGroupItem tag="a" href={photo.fullUrl} target="_blank">
                       View in full size{" "}
                       <FontAwesomeIcon
                         icon="chevron-right"
