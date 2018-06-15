@@ -97,6 +97,21 @@ class PhotoModal extends React.Component {
                         </ListGroupItemText>
                       </ListGroupItem>
                     )}
+                    {photo.coords && (
+                      <ListGroupItem>
+                        <ListGroupItemHeading>Location</ListGroupItemHeading>
+                        <ListGroupItemText>
+                          <a
+                            href={`https://www.google.com/maps/place/${
+                              photo.latitude
+                            },${photo.longitude}/@18z`}
+                            target="_blank"
+                          >
+                            {Util.formatCoordinate(photo.coords)}
+                          </a>
+                        </ListGroupItemText>
+                      </ListGroupItem>
+                    )}
                     <ListGroupItem>
                       <ListGroupItemHeading>Settings</ListGroupItemHeading>
                       <ListGroupItemText>
