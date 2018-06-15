@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Input, Label } from "reactstrap";
+import { Input, Label } from "reactstrap";
 import PhotoCard from "./PhotoCard";
 
 class Gallery extends React.Component {

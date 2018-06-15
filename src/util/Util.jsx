@@ -1,5 +1,3 @@
-import React from "react";
-
 const SI_PREFIXES = ["", "ki", "Mi", "Gi", "Ti", "Pi"];
 
 export default {

@@ -57,7 +57,7 @@ class PhotoModal extends React.Component {
             <ModalBody>
               <Row>
                 <Col xs="12" sm="9" className="PhotoModal__photo">
-                  <img src={href} />
+                  <img src={href} alt="" />
                 </Col>
                 <Col xs="12" sm="3" className="PhotoModal__attributes">
                   <ListGroup>

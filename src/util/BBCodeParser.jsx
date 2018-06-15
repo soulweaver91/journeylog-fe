@@ -2,7 +2,6 @@ import React from "react";
 import { Parser, Tag } from "bbcode-to-react";
 import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
-import SimpleTag from "bbcode-to-react/lib/tags/simple";
 
 const BBCodeContext = React.createContext();
 

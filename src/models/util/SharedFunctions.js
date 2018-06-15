@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 export function getCoords(self) {
   // can't compare with ! since 0 is a valid lat/lng but is falsy
   if (
