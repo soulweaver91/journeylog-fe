@@ -26,7 +26,10 @@
   .JournalPage__content {
     padding: ($grid-gutter-width / 2);
     height: 100%;
-    overflow: auto;
+
+    @include media-breakpoint-up(md) {
+      overflow: auto;
+    }
 
     br {
       margin: 0 0 0.75em 0;

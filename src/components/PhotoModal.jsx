@@ -52,10 +52,10 @@ class PhotoModal extends React.Component {
             </ModalHeader>
             <ModalBody>
               <Row>
-                <Col xs="12" sm="9" className="PhotoModal__photo">
+                <Col xs="12" md="9" className="PhotoModal__photo">
                   <img src={photo.fullUrl} alt="" />
                 </Col>
-                <Col xs="12" sm="3" className="PhotoModal__attributes">
+                <Col xs="12" md="3" className="PhotoModal__attributes">
                   <ListGroup>
                     {photo.description && (
                       <ListGroupItem>

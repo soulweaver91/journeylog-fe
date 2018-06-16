@@ -10,8 +10,10 @@
 
 .JourneyView {
   padding: 1em;
-  height: 100%;
-  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    overflow: hidden;
+  }
 
   .border > .row {
     height: 100%;

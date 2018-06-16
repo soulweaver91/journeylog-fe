@@ -3,12 +3,12 @@
   max-height: 100%;
 
   .modal-content {
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       max-height: calc(100vh - 4em);
     }
 
     .modal-body {
-      @include media-breakpoint-up(sm) {
+      @include media-breakpoint-up(md) {
         overflow: hidden;
       }
       padding: 0;
@@ -20,7 +20,7 @@
         > * {
           padding: 0;
 
-          @include media-breakpoint-up(sm) {
+          @include media-breakpoint-up(md) {
             height: 100%;
           }
         }
