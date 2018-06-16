@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
 import RequestState from "./stores/util/RequestState";
+import BrowserSupportBar from "./components/BrowserSupportBar";
 
 const store = RootStore.create({
   journeyStore: {
@@ -23,6 +24,7 @@ const store = RootStore.create({
 });
 store.bootstrap();
 
+// noinspection JSUnusedLocalSymbols
 const { status, ...childStores } = store;
 
 @observer
@@ -41,6 +43,7 @@ class App extends Component {
             ) : (
               <div className="center">Loading...</div>
             )}
+            <BrowserSupportBar />
           </div>
         </Provider>
       </BrowserRouter>

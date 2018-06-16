@@ -1,0 +1,5 @@
+{
+  "minify": true,
+  "options": ["setClasses", "testProp"],
+  "feature-detects": ["test/exif-orientation"]
+}
