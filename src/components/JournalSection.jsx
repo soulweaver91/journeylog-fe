@@ -12,7 +12,11 @@ class JournalSection extends React.Component {
     const otherNames = [];
     if (hasOtherNames) {
       location.otherNames.forEach((name, lang) => {
-        otherNames.push(<span key={lang}>{name}</span>);
+        otherNames.push(
+          <span key={lang} lang={lang}>
+            {name}
+          </span>
+        );
       });
     }
 

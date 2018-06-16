@@ -12,6 +12,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: $font-family-base;
+
+  *[lang="ja_JP"] {
+    font-family: "Heisei Kaku Gothic Std", "Adobe Fan Heiti Std", "MS Gothic",
+      "Hind", "Calibri", "Segoe UI", "Helvetica", sans-serif;
+  }
 }
 
 .center {
