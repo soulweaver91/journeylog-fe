@@ -108,22 +108,29 @@ class PhotoModal extends React.Component {
                         </ListGroupItemText>
                       </ListGroupItem>
                     )}
-                    <ListGroupItem>
-                      <ListGroupItemHeading>Settings</ListGroupItemHeading>
-                      <ListGroupItemText>
-                        {photo.iso_speed && <p>ISO speed: {photo.iso_speed}</p>}
-                        {photo.focal_length && (
-                          <p>Focal length: {photo.focal_length} mm</p>
-                        )}
-                        {photo.f_value && <p>F-value: {photo.f_value}</p>}
-                        {photo.exposure && <p>Exposure: {photo.exposure} s</p>}
-                        {photo.flash_fired && (
-                          <p>
-                            Flash: {photo.flash_manual ? "Manual" : "Automatic"}
-                          </p>
-                        )}
-                      </ListGroupItemText>
-                    </ListGroupItem>
+                    {photo.iso_speed && (
+                      <ListGroupItem>
+                        <ListGroupItemHeading>Settings</ListGroupItemHeading>
+                        <ListGroupItemText>
+                          {photo.iso_speed && (
+                            <p>ISO speed: {photo.iso_speed}</p>
+                          )}
+                          {photo.focal_length && (
+                            <p>Focal length: {photo.focal_length} mm</p>
+                          )}
+                          {photo.f_value && <p>F-value: {photo.f_value}</p>}
+                          {photo.exposure && (
+                            <p>Exposure: {photo.exposure} s</p>
+                          )}
+                          {photo.flash_fired && (
+                            <p>
+                              Flash:{" "}
+                              {photo.flash_manual ? "Manual" : "Automatic"}
+                            </p>
+                          )}
+                        </ListGroupItemText>
+                      </ListGroupItem>
+                    )}
                     <ListGroupItem>
                       <ListGroupItemHeading>File size</ListGroupItemHeading>
                       <ListGroupItemText>
