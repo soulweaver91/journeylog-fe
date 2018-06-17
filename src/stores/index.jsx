@@ -5,6 +5,7 @@ import MapLocationStore from "./MapLocationStore";
 import Api from "../util/Api";
 import RequestState, { RequestStateType } from "./util/RequestState";
 import PhotoModalStore from "./PhotoModalStore";
+import AboutModalStore from "./AboutModalStore";
 
 const RootStore = types
   .model("RootStore", {
@@ -12,7 +13,8 @@ const RootStore = types
     tagStore: types.maybe(TagStore, {}),
     mapLocationStore: types.maybe(MapLocationStore, {}),
     status: types.maybe(RequestStateType, RequestState.UNINITIALIZED),
-    photoModalStore: types.maybe(PhotoModalStore, {})
+    photoModalStore: types.maybe(PhotoModalStore, {}),
+    aboutModalStore: types.maybe(AboutModalStore, {})
   })
   .actions((self) => ({
     bootstrap: flow(function*() {

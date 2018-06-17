@@ -6,6 +6,7 @@ import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
 import RequestState from "./stores/util/RequestState";
 import BrowserSupportBar from "./components/BrowserSupportBar";
+import AboutModal from "./components/AboutModal";
 
 const store = RootStore.create({
   journeyStore: {
@@ -20,6 +21,9 @@ const store = RootStore.create({
   photoModalStore: {
     isOpen: false,
     photo: null
+  },
+  aboutModalStore: {
+    isOpen: false
   }
 });
 store.bootstrap();
@@ -44,6 +48,7 @@ class App extends Component {
               <div className="center">Loading...</div>
             )}
             <BrowserSupportBar />
+            <AboutModal />
           </div>
         </Provider>
       </BrowserRouter>

@@ -22,3 +22,20 @@ body {
 .center {
   text-align: center;
 }
+
+.navbar-dark .navbar-nav .btn-link {
+  color: $navbar-dark-color;
+
+  &:hover {
+    color: $navbar-dark-hover-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &:focus {
+    color: $navbar-dark-active-color;
+    text-decoration: none;
+  }
+
+  transition: none;
+}
