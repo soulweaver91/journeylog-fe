@@ -27,7 +27,7 @@ class JournalPagesList extends React.Component {
                 active: this.props.activePage === page.date
               })}
             >
-              {page.date}
+              {page.displayName}
             </ListGroupItem>
           ))}
         </ListGroup>

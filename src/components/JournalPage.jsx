@@ -47,7 +47,7 @@ class JournalPage extends React.Component {
               : null
           }}
         >
-          {journey.name}, {match.params.day}
+          {journey.name} – {page.displayName}
         </h2>
         <div className="JournalPage__nav">
           <Nav tabs>

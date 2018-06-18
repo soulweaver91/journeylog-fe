@@ -6,6 +6,7 @@ import Util from "../util/Util";
 import Gallery from "./Gallery";
 import JournalPageMap from "./JournalPageMap";
 import { liteParser } from "../util/BBCodeParser";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
 class JournalOverviewPage extends React.Component {
   tabs = [
@@ -41,6 +42,29 @@ class JournalOverviewPage extends React.Component {
           }}
         >
           {journey.name}
+
+          <ul className="JournalPage__key-points">
+            <li title={journey.photos.length + " photos taken"}>
+              <FontAwesomeIcon icon="images" />
+              <span>{journey.photos.length}</span>
+              <span className="sr-only"> photos</span>
+            </li>
+            <li title={journey.journal.length + " journal pages written"}>
+              <FontAwesomeIcon icon="book" />
+              <span>{journey.journal.length}</span>
+              <span className="sr-only"> journal pages</span>
+            </li>
+            <li title={journey.map_locations.length + " locations visited"}>
+              <FontAwesomeIcon icon="map-pin" />
+              <span>{journey.map_locations.length}</span>
+              <span className="sr-only"> visited locations</span>
+            </li>
+            <li title={journey.map_route.length + " points in timeline"}>
+              <FontAwesomeIcon icon="route" />
+              <span>{journey.map_route.length}</span>
+              <span className="sr-only"> map timeline points</span>
+            </li>
+          </ul>
         </h2>
         <div className="JournalPage__nav">
           <Nav tabs>
@@ -74,12 +98,6 @@ class JournalOverviewPage extends React.Component {
                       "[root]" + journey.description + "[/root]"
                     )}
                   </p>
-                  <ul>
-                    <li>{journey.photos.length} photos</li>
-                    <li>{journey.map_locations.length} map location visits</li>
-                    <li>{journey.map_route.length} map timeline points</li>
-                    <li>{journey.journal.length} journal pages</li>
-                  </ul>
                 </div>
               )}
             />

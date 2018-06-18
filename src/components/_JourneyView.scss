@@ -12,7 +12,9 @@
   padding: 1em;
 
   @include media-breakpoint-up(md) {
-    overflow: hidden;
+    @media (min-height: 350px) {
+      overflow: hidden;
+    }
   }
 
   .border > .row {
