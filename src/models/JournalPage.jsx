@@ -1,4 +1,5 @@
 import { types, getParent } from "mobx-state-tree";
+import { DateTime } from "luxon";
 
 const JournalPage = types
   .model("JournalPage", {
@@ -12,8 +13,20 @@ const JournalPage = types
       return `${getParent(self, 2).route}/${self.date}`;
     },
     get photos() {
+      const startTime = DateTime.fromSQL(self.date, {
+        zone: "UTC"
+      });
+      const endTime = DateTime.fromSQL(
+        self.date_end && self.date_end !== "0000-00-00"
+          ? self.date_end
+          : self.date,
+        {
+          zone: "UTC"
+        }
+      ).endOf("day");
+
       return getParent(self, 2).photos.filter((photo) =>
-        photo.takenOnDay(self.date)
+        photo.takenBetween(startTime, endTime)
       );
     },
     get displayName() {
