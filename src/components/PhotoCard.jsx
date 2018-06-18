@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "reactstrap";
 import { inject } from "mobx-react";
+import LazyLoad from "react-lazyload";
 
 @inject("photoModalStore")
 class PhotoCard extends React.PureComponent {
@@ -23,14 +24,16 @@ class PhotoCard extends React.PureComponent {
             width: size || undefined
           }}
         >
-          <div
-            className="PhotoCard__img-container"
-            style={{
-              backgroundImage: `url(${photo.thumbUrl})`,
-              width: size || undefined,
-              height: size || undefined
-            }}
-          />
+          <LazyLoad height={size || 200} overflow={true}>
+            <div
+              className="PhotoCard__img-container"
+              style={{
+                backgroundImage: `url(${photo.thumbUrl})`,
+                width: size || undefined,
+                height: size || undefined
+              }}
+            />
+          </LazyLoad>
           <div className="PhotoCard__data-container">
             <span>{photo.name}</span>
           </div>
