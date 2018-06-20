@@ -53,3 +53,16 @@ body {
     transition: none;
   }
 }
+
+.modal {
+  .modal-header {
+    background-color: $primary;
+    color: color-yiq($primary);
+    border-bottom-color: $primary;
+
+    button.close {
+      color: color-yiq($primary);
+      text-shadow: none;
+    }
+  }
+}
