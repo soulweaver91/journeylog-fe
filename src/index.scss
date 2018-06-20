@@ -23,19 +23,31 @@ body {
   text-align: center;
 }
 
-.navbar-dark .navbar-nav .btn-link {
-  color: $navbar-dark-color;
+.navbar {
+  background-image: url("assets/journeylog-white.svg");
+  background-position: -1.5em 0;
+  background-repeat: no-repeat;
+  background-size: 5.5em 5.5em;
+  padding-left: 0;
 
-  &:hover {
-    color: $navbar-dark-hover-color;
-    text-decoration: none;
+  a.navbar-brand {
+    padding-left: 3.5em;
   }
 
-  &:active,
-  &:focus {
-    color: $navbar-dark-active-color;
-    text-decoration: none;
-  }
+  &.navbar-dark .navbar-nav .btn-link {
+    color: $navbar-dark-color;
 
-  transition: none;
+    &:hover {
+      color: $navbar-dark-hover-color;
+      text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      color: $navbar-dark-active-color;
+      text-decoration: none;
+    }
+
+    transition: none;
+  }
 }
