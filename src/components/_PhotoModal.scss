@@ -21,7 +21,7 @@
           padding: 0;
 
           @include media-breakpoint-up(md) {
-            height: 100%;
+            max-height: 100%;
           }
         }
       }
@@ -31,6 +31,9 @@
   .PhotoModal__photo {
     overflow-x: auto;
     overflow-y: auto;
+    display: flex;
+    align-items: center;
+    background-color: darken($primary, 10%);
 
     img {
       max-width: 100%;
@@ -43,8 +46,7 @@
     overflow-y: auto;
 
     .list-group {
-      margin: (-$list-group-border-width) (-$list-group-border-width) 0
-        (-$list-group-border-width);
+      margin: (-$list-group-border-width) (-$list-group-border-width) 0 0;
 
       .list-group-item {
         padding: 0.5em 0.75em;
