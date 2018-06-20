@@ -4,6 +4,8 @@ $container-max-widths: ("xl": 1600px);
 $border-radius: 0;
 $font-family-base: "Hind", "Calibri", "Segoe UI", "Heisei Kaku Gothic Std",
   "Adobe Fan Heiti Std", "Helvetica", "MS Gothic", sans-serif;
+$modal-content-border-radius: 0;
+$primary: #e73201;
 
 @import "bootstrap/scss/bootstrap";
 @import "./components/**/*.scss";
