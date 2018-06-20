@@ -14,7 +14,8 @@
 
     &:hover,
     &:active {
-      background-color: $gray-200;
+      background-color: $primary;
+      color: color-yiq($primary);
     }
   }
 
