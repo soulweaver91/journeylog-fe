@@ -2,14 +2,20 @@
   max-width: 95%;
   max-height: 100%;
 
+  @include media-breakpoint-up(md) {
+    height: calc(100vh - 4em);
+  }
+
   .modal-content {
     @include media-breakpoint-up(md) {
       max-height: calc(100vh - 4em);
+      height: 100%;
     }
 
     .modal-body {
       @include media-breakpoint-up(md) {
         overflow: hidden;
+        height: 100%;
       }
       padding: 0;
 

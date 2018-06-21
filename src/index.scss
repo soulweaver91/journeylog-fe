@@ -30,6 +30,7 @@ body {
 
 .navbar {
   padding: 0 $navbar-padding-x;
+  flex-shrink: 0;
 
   a.navbar-brand {
     margin-left: -$navbar-padding-x;
@@ -90,6 +91,7 @@ body {
     background-color: $primary;
     color: color-yiq($primary);
     border-bottom-color: $primary;
+    flex: 1 0 auto;
 
     button.close {
       color: color-yiq($primary);
