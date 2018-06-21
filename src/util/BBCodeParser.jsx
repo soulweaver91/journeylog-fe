@@ -2,6 +2,7 @@ import React from "react";
 import { Parser, Tag } from "bbcode-to-react";
 import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
+import FakeBr from "../components/basic/FakeBr";
 
 const BBCodeContext = React.createContext();
 
@@ -12,7 +13,7 @@ const convertNewlines = (component) => {
     parts = parts.reduce((a, v, k) => {
       a.push(
         <React.Fragment key={"br_" + k}>
-          <br />
+          <FakeBr />
         </React.Fragment>
       );
       a.push(<React.Fragment key={"v_" + k}>{v}</React.Fragment>);
