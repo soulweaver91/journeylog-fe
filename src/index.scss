@@ -10,6 +10,9 @@ $primary: #e73201;
 @import "bootstrap/scss/bootstrap";
 @import "./components/**/*.scss";
 
+$navbar-dark-hover-color: $white;
+$navbar-dark-active-color: $white;
+
 body {
   margin: 0;
   padding: 0;
@@ -26,31 +29,59 @@ body {
 }
 
 .navbar {
-  background-image: url("assets/journeylog-white.svg");
-  background-position: -1.5em 0;
-  background-repeat: no-repeat;
-  background-size: 5.5em 5.5em;
-  padding-left: 0;
+  padding: 0 $navbar-padding-x;
 
   a.navbar-brand {
-    padding-left: 3.5em;
-  }
-
-  &.navbar-dark .navbar-nav .btn-link {
-    color: $navbar-dark-color;
+    margin-left: -$navbar-padding-x;
+    margin-right: 0;
+    padding: ($navbar-brand-padding-y + $navbar-padding-y)
+      ($navbar-nav-link-padding-x * 2)
+      ($navbar-brand-padding-y + $navbar-padding-y) 4.5em;
+    background-image: url("assets/journeylog-white.svg");
+    background-position: -1.25em -0.75em;
+    background-repeat: no-repeat;
+    background-size: 5.5em 5.5em;
 
     &:hover {
       color: $navbar-dark-hover-color;
+      background-color: $primary;
       text-decoration: none;
     }
 
     &:active,
     &:focus {
       color: $navbar-dark-active-color;
+      background-color: $primary;
       text-decoration: none;
     }
+  }
 
-    transition: none;
+  &.navbar-dark .navbar-nav {
+    .nav-link,
+    .btn-link {
+      color: $navbar-dark-color;
+      padding: ($navbar-padding-y + $navbar-padding-y)
+        $navbar-nav-link-padding-x;
+
+      &:hover {
+        color: $navbar-dark-hover-color;
+        background-color: $primary;
+        text-decoration: none;
+      }
+
+      &:active,
+      &:focus {
+        color: $navbar-dark-active-color;
+        background-color: $primary;
+        text-decoration: none;
+      }
+
+      transition: none;
+    }
+    .nav-item > span {
+      padding: ($navbar-padding-y + $navbar-padding-y)
+        $navbar-nav-link-padding-x;
+    }
   }
 }
 
