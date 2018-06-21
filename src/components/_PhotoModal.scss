@@ -38,12 +38,12 @@
     overflow-x: auto;
     overflow-y: auto;
     display: flex;
-    align-items: center;
     background-color: darken($primary, 10%);
 
     img {
       max-width: 100%;
       image-orientation: from-image;
+      margin: auto;
     }
   }
 
