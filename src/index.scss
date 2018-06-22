@@ -37,9 +37,9 @@ body {
     margin-right: 0;
     padding: ($navbar-brand-padding-y + $navbar-padding-y)
       ($navbar-nav-link-padding-x * 2)
-      ($navbar-brand-padding-y + $navbar-padding-y) 4.5em;
+      ($navbar-brand-padding-y + $navbar-padding-y) 5em;
     background-image: url("assets/journeylog-white.svg");
-    background-position: -1.25em -0.75em;
+    background-position: -0.75em -0.75em;
     background-repeat: no-repeat;
     background-size: 5.5em 5.5em;
 
@@ -78,6 +78,9 @@ body {
       }
 
       transition: none;
+    }
+    .btn-link {
+      border-width: 0;
     }
     .nav-item > span {
       padding: ($navbar-padding-y + $navbar-padding-y)
