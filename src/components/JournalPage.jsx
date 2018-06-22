@@ -28,7 +28,7 @@ class JournalPage extends React.Component {
 
   componentWillUpdate = (nextProps) => {
     if (this.props.location.pathname !== nextProps.location.pathname) {
-      this.scrollContainer.scrollTo(0, 0);
+      this.scrollContainer.scrollTop = 0;
     }
   };
 
