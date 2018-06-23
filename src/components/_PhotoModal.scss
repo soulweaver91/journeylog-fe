@@ -45,6 +45,13 @@
       image-orientation: from-image;
       margin: auto;
     }
+
+    span {
+      color: color-yiq($primary);
+      margin: auto;
+      padding: 6em;
+      text-align: center;
+    }
   }
 
   .PhotoModal__attributes {

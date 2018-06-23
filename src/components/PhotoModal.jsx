@@ -53,7 +53,17 @@ class PhotoModal extends React.Component {
             <ModalBody>
               <Row>
                 <Col xs="12" md="9" className="PhotoModal__photo">
-                  <img src={photo.fullUrl} alt="" />
+                  {photo.confidentiality === 0 ? (
+                    <img src={photo.fullUrl} alt="" />
+                  ) : (
+                    <span>
+                      Viewing of this photo is restricted at this time because
+                      it contains sensitive personal details or other content
+                      deemed not shareable to the general public. Authorized
+                      people may view this content later once the support for
+                      that feature has been added.
+                    </span>
+                  )}
                 </Col>
                 <Col xs="12" md="3" className="PhotoModal__attributes">
                   <ListGroup>
@@ -166,13 +176,19 @@ class PhotoModal extends React.Component {
                         )}
                       </ListGroupItemText>
                     </ListGroupItem>
-                    <ListGroupItem tag="a" href={photo.fullUrl} target="_blank">
-                      View in full size{" "}
-                      <FontAwesomeIcon
-                        icon="chevron-right"
-                        className="pull-right"
-                      />
-                    </ListGroupItem>
+                    {photo.confidentiality === 0 && (
+                      <ListGroupItem
+                        tag="a"
+                        href={photo.fullUrl}
+                        target="_blank"
+                      >
+                        View in full size{" "}
+                        <FontAwesomeIcon
+                          icon="chevron-right"
+                          className="pull-right"
+                        />
+                      </ListGroupItem>
+                    )}
                   </ListGroup>
                 </Col>
               </Row>

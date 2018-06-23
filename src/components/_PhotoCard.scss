@@ -25,6 +25,19 @@
     background-position: center;
     background-size: cover;
     flex-grow: 0;
+    display: flex;
+
+    > .PhotoCard__locked {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+
+      > svg {
+        font-size: 3rem;
+      }
+    }
   }
 
   .PhotoCard__data-container {

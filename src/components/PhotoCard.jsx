@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "reactstrap";
 import { inject } from "mobx-react";
 import LazyLoad from "react-lazyload";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
 @inject("photoModalStore")
 class PhotoCard extends React.PureComponent {
@@ -25,14 +26,29 @@ class PhotoCard extends React.PureComponent {
           }}
         >
           <LazyLoad height={size || 200} overflow={true}>
-            <div
-              className="PhotoCard__img-container"
-              style={{
-                backgroundImage: `url(${photo.thumbUrl})`,
-                width: size || undefined,
-                height: size || undefined
-              }}
-            />
+            {photo.confidentiality === 0 ? (
+              <div
+                className="PhotoCard__img-container"
+                style={{
+                  backgroundImage: `url(${photo.thumbUrl})`,
+                  width: size || undefined,
+                  height: size || undefined
+                }}
+              />
+            ) : (
+              <div
+                className="PhotoCard__img-container"
+                style={{
+                  width: size || undefined,
+                  height: size || undefined
+                }}
+              >
+                <div className="PhotoCard__locked">
+                  <FontAwesomeIcon icon="lock" />
+                  <span>Restricted from view</span>
+                </div>
+              </div>
+            )}
           </LazyLoad>
           <div className="PhotoCard__data-container">
             <span>{photo.name}</span>
