@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 
 import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
-import RequestState from "./stores/util/RequestState";
 import BrowserSupportBar from "./components/BrowserSupportBar";
 import AboutModal from "./components/AboutModal";
 
@@ -38,12 +37,12 @@ class App extends Component {
       <BrowserRouter basename={process.env.REACT_APP_URL_PREFIX}>
         <Provider {...childStores}>
           <div className="App">
-            {store.status === RequestState.LOADED ? (
-              <JourneyLog />
-            ) : store.status === RequestState.ERROR ? (
+            {store.hasErrors ? (
               <div className="center">
                 JourneyLog is currently unavailable. Please try again later.
               </div>
+            ) : store.isLoaded ? (
+              <JourneyLog />
             ) : (
               <div className="center">Loading...</div>
             )}

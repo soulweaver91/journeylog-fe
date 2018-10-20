@@ -57,9 +57,9 @@ class JourneyView extends React.Component {
                       )}
                     />
                     <Route
-                      path={`${this.props.match.url}/:day`}
+                      path={`${this.props.match.url}/:slug`}
                       render={({ match, location }) => {
-                        const page = journey.findPage(match.params.day);
+                        const page = journey.findPage(match.params.slug);
 
                         return (
                           <JournalPage

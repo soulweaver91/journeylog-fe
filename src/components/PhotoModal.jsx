@@ -14,7 +14,7 @@ import { inject, observer } from "mobx-react";
 import { DateTime } from "luxon";
 import Util from "../util/Util";
 import { liteParser } from "../util/BBCodeParser";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withRouter } from "react-router-dom";
 
 @withRouter
@@ -158,12 +158,8 @@ class PhotoModal extends React.Component {
                     <ListGroupItem>
                       <ListGroupItemHeading>Dimensions</ListGroupItemHeading>
                       <ListGroupItemText>
-                        {photo.width} × {photo.height} ({(
-                          photo.width *
-                          photo.height /
-                          1e6
-                        ).toFixed(1)}{" "}
-                        MPix)
+                        {photo.width} × {photo.height} (
+                        {((photo.width * photo.height) / 1e6).toFixed(1)} MPix)
                       </ListGroupItemText>
                     </ListGroupItem>
                     <ListGroupItem>

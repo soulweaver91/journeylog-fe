@@ -94,7 +94,7 @@ class JournalPage extends React.Component {
             />
             <Route
               path={`${match.url}/gallery`}
-              render={() => <Gallery photos={page.photos} />}
+              render={() => <Gallery photos={[]} />}
             />
             <Route
               path={`${match.url}/map`}

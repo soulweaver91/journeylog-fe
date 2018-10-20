@@ -6,7 +6,7 @@ import Util from "../util/Util";
 import Gallery from "./Gallery";
 import JournalPageMap from "./JournalPageMap";
 import { liteParser } from "../util/BBCodeParser";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class JournalOverviewPage extends React.Component {
   tabs = [
@@ -44,14 +44,14 @@ class JournalOverviewPage extends React.Component {
           {journey.name}
 
           <ul className="JournalPage__key-points">
-            <li title={journey.photos.length + " photos taken"}>
+            <li title={journey.photosCount + " photos taken"}>
               <FontAwesomeIcon icon="images" />
-              <span>{journey.photos.length}</span>
+              <span>{journey.photosCount}</span>
               <span className="sr-only"> photos</span>
             </li>
-            <li title={journey.journal.length + " journal pages written"}>
+            <li title={journey.journalPagesCount + " journal pages written"}>
               <FontAwesomeIcon icon="book" />
-              <span>{journey.journal.length}</span>
+              <span>{journey.journalPagesCount}</span>
               <span className="sr-only"> journal pages</span>
             </li>
             {/* <li title={journey.map_locations.length + " locations visited"}>
@@ -103,7 +103,7 @@ class JournalOverviewPage extends React.Component {
             />
             <Route
               path={`${this.props.match.url}/gallery`}
-              render={() => <Gallery photos={journey.photos} />}
+              render={() => <Gallery photos={[]} />}
             />
             <Route
               path={`${this.props.match.url}/map`}

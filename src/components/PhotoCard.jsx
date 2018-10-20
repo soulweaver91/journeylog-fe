@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "reactstrap";
 import { inject } from "mobx-react";
 import LazyLoad from "react-lazyload";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 @inject("photoModalStore")
 class PhotoCard extends React.PureComponent {

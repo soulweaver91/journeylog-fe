@@ -3,21 +3,23 @@ import Color from "color";
 
 import LocationIcon from "./util/LocationIcon";
 import { associatePairs, getCoords } from "./util/SharedFunctions";
+import MapLocationName from "./MapLocationName";
 
 const MapLocation = types
   .model("MapLocation", {
     id: types.identifier(types.number),
     name: types.string,
-    otherNames: types.optional(types.map(types.string), {}),
+    names: types.optional(types.map(MapLocationName), {}),
     latitude: types.number,
     longitude: types.number,
     // using LocationIconType is too stringent; the model is outright rejected if the value is not known
     type: types.maybe(types.string),
     color: types.maybe(types.string)
   })
-  .preProcessSnapshot(({ other_names, ...rest }) => ({
+  .preProcessSnapshot(({ latitude, longitude, ...rest }) => ({
     ...rest,
-    otherNames: rest.otherNames || associatePairs(other_names, "lang", "name")
+    latitude: Number(latitude),
+    longitude: Number(longitude)
   }))
   .views((self) => ({
     get icon() {

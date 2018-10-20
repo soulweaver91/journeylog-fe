@@ -1,7 +1,6 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
+import { NavLink } from "react-router-dom";
 
 class JournalPagesList extends React.Component {
   render() {
@@ -10,23 +9,13 @@ class JournalPagesList extends React.Component {
         <ListGroup>
           <ListGroupItem
             key="_overview"
-            tag={Link}
+            tag={NavLink}
             to={`${this.props.journey.route}/overview`}
-            className={classNames({
-              active: this.props.activePage === "overview"
-            })}
           >
             Overview
           </ListGroupItem>
-          {this.props.journey.journal.map((page) => (
-            <ListGroupItem
-              key={page.date}
-              tag={Link}
-              to={page.route}
-              className={classNames({
-                active: this.props.activePage === page.date
-              })}
-            >
+          {this.props.journey.journalPages.map((page) => (
+            <ListGroupItem key={page.slug} tag={NavLink} to={page.route}>
               {page.displayName}
             </ListGroupItem>
           ))}

@@ -1,20 +1,19 @@
 import React from "react";
 import classNames from "classnames";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class JournalSection extends React.Component {
   render() {
     const { location, detached, startTime, endTime, children } = this.props;
 
-    const hasOtherNames =
-      location && location.otherNames && location.otherNames.size > 0;
+    const hasOtherNames = location && location.names && location.names.size > 0;
 
     const otherNames = [];
     if (hasOtherNames) {
-      location.otherNames.forEach((name, lang) => {
+      location.names.forEach((nameObj, lang) => {
         otherNames.push(
           <span key={lang} lang={lang}>
-            {name}
+            {nameObj.name}
           </span>
         );
       });

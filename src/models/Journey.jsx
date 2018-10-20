@@ -9,21 +9,26 @@ const Journey = types
     slug: types.identifier(types.string),
     name: types.string,
     description: types.optional(types.string, ""),
-    journal: types.array(JournalPage),
-    map_locations: types.optional(types.array(MapLocationVisit), []),
-    map_route: types.optional(types.array(MapPointVisit), []),
-    photos: types.array(Photo),
+    journalPages: types.array(JournalPage),
+    journalPagesCount: types.number,
+    mapLocations: types.optional(types.array(MapLocationVisit), []),
+    mapRoute: types.optional(types.array(MapPointVisit), []),
+    // TODO
+    // photos: types.optional(types.array(Photo), []),
+    photosCount: types.number,
     background: types.maybe(types.string)
   })
   .views((self) => ({
     get route() {
       return `/journey/${self.slug}`;
     },
-    findPage(date) {
-      return self.journal.find((page) => page.date === date);
+    findPage(slug) {
+      return self.journalPages.find((page) => page.slug === slug);
     },
     findPhoto(id) {
-      return self.photos.find((photo) => photo.filename === id);
+      // TODO
+      // return self.photos.find((photo) => photo.filename === id);
+      return null;
     }
   }));
 

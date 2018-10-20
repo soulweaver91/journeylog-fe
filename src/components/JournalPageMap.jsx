@@ -1,6 +1,6 @@
 import React from "react";
 import { Alert } from "reactstrap";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class JournalPageMap extends React.Component {
   render() {

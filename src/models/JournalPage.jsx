@@ -3,23 +3,24 @@ import { DateTime } from "luxon";
 
 const JournalPage = types
   .model("JournalPage", {
-    date: types.string,
-    date_end: types.maybe(types.string),
+    slug: types.string,
+    dateStart: types.string,
+    dateEnd: types.maybe(types.string),
     name: types.maybe(types.string),
     text: types.string
   })
   .views((self) => ({
     get route() {
-      return `${getParent(self, 2).route}/${self.date}`;
+      return `${getParent(self, 2).route}/${self.slug}`;
     },
     get photos() {
-      const startTime = DateTime.fromSQL(self.date, {
+      const startTime = DateTime.fromSQL(self.dateStart, {
         zone: "UTC"
       });
       const endTime = DateTime.fromSQL(
-        self.date_end && self.date_end !== "0000-00-00"
-          ? self.date_end
-          : self.date,
+        self.dateEnd && self.dateEnd !== "0000-00-00"
+          ? self.dateEnd
+          : self.dateStart,
         {
           zone: "UTC"
         }
@@ -30,15 +31,15 @@ const JournalPage = types
       );
     },
     get displayName() {
-      let text = new Date(self.date).toLocaleDateString("en-GB", {
+      let text = new Date(self.dateStart).toLocaleDateString("en-GB", {
         year: "numeric",
         month: "long",
         day: "numeric"
       });
-      if (self.date_end && self.date_end !== "0000-00-00") {
+      if (self.dateEnd && self.dateEnd !== "0000-00-00") {
         text +=
           "–" +
-          new Date(self.date_end).toLocaleDateString("en-GB", {
+          new Date(self.dateEnd).toLocaleDateString("en-GB", {
             year: "numeric",
             month: "long",
             day: "numeric"
