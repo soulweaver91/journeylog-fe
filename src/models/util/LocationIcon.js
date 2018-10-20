@@ -19,7 +19,7 @@ const LocationIcon = {
   ARCADE: "trophy",
   HOME: "home",
   MUSEUM: "university",
-  SHRINE: "sun", // no good candidate icon right now
+  SHRINE: "torii-gate",
   PLACE: "map-pin",
   MONUMENT: "star"
 };
