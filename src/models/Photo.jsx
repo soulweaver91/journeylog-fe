@@ -5,6 +5,7 @@ import PhotoBase from "./PhotoBase";
 
 const Photo = PhotoBase.named("Photo")
   .props({
+    id: types.identifier(types.number),
     latitude: types.maybe(types.number),
     longitude: types.maybe(types.number),
     description: types.maybe(types.string),

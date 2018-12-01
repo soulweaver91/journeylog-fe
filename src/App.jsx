@@ -21,9 +21,7 @@ const store = RootStore.create({
   photoModalStore: {
     isOpen: false
   },
-  photoStore: {
-    photos: []
-  },
+  photoStore: {},
   aboutModalStore: {
     isOpen: false
   }

@@ -50,15 +50,16 @@ class PhotoModal extends React.Component {
     const { journeySlug, filename } = photoModalStore;
 
     const photo = photoStore.getPhoto(journeySlug, filename);
+    const state = photoStore.requestStatuses.get(`${journeySlug}/${filename}`);
 
     return (
       <Modal isOpen={photoModalStore.isOpen} className="PhotoModal">
         <ModalHeader toggle={photoModalStore.close}>
-          {photo ? photo.name : ""}
+          {photo ? photo.name : filename}
         </ModalHeader>
         <ModalBody>
           <RequestStateLoader
-            state={photoStore.requestStatuses[`${journeySlug}/${filename}`]}
+            state={state}
             loaded={() => (
               <Row>
                 <Col xs="12" md="9" className="PhotoModal__photo">
