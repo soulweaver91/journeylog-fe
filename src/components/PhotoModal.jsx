@@ -84,7 +84,7 @@ class PhotoModal extends React.Component {
                     )}
                     <ListGroupItem>
                       <ListGroupItemHeading>Taken on</ListGroupItemHeading>
-                      <ListGroupItemText>
+                      <ListGroupItemText tag="div">
                         <p>
                           <FontAwesomeIcon icon="suitcase" fixedWidth />
                           <span className="sr-only">Local:</span>{" "}
@@ -131,7 +131,7 @@ class PhotoModal extends React.Component {
                     {photo.isoSpeed && (
                       <ListGroupItem>
                         <ListGroupItemHeading>Settings</ListGroupItemHeading>
-                        <ListGroupItemText>
+                        <ListGroupItemText tag="div">
                           {photo.isoSpeed && <p>ISO speed: {photo.isoSpeed}</p>}
                           {photo.focalLength && (
                             <p>Focal length: {photo.focalLength} mm</p>
