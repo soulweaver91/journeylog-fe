@@ -1,5 +1,4 @@
 import { types } from "mobx-state-tree";
-import Photo from "../models/Photo";
 import Util from "../util/Util";
 
 const PhotoModalStore = types

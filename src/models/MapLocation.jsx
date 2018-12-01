@@ -2,7 +2,7 @@ import { types } from "mobx-state-tree";
 import Color from "color";
 
 import LocationIcon from "./util/LocationIcon";
-import { associatePairs, getCoords } from "./util/SharedFunctions";
+import { getCoords } from "./util/SharedFunctions";
 import MapLocationName from "./MapLocationName";
 
 const MapLocation = types
