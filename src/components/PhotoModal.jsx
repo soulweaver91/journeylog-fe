@@ -16,41 +16,50 @@ import Util from "../util/Util";
 import { liteParser } from "../util/BBCodeParser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withRouter } from "react-router-dom";
+import RequestStateLoader from "./loader/RequestStateLoader";
+
+const photoHashRegex = /^#photo:(.+)\/(.+)$/;
 
 @withRouter
-@inject("photoModalStore")
+@inject("photoModalStore", "photoStore")
 @observer
 class PhotoModal extends React.Component {
   componentDidMount() {
-    this.openHash();
+    window.addEventListener("hashchange", this.loadPhotoFromHash);
+    this.loadPhotoFromHash();
   }
 
-  openHash = () => {
-    const hashData = window.document.location.hash.match(/^#photo:(.+)$/);
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.loadPhotoFromHash);
+  }
 
+  loadPhotoFromHash = () => {
+    const { photoStore } = this.props;
+
+    const hashData = window.document.location.hash.match(photoHashRegex);
     if (!hashData) {
       return;
     }
 
-    const photo = this.props.journey.findPhoto(hashData[1]);
-
-    if (photo) {
-      this.props.photoModalStore.open(photo);
-    }
+    photoStore.loadPhoto(hashData[1], hashData[2]);
+    this.props.photoModalStore.open(hashData[1], hashData[2]);
   };
 
   render() {
-    const { photoModalStore } = this.props;
-    const { photo } = photoModalStore;
+    const { photoModalStore, photoStore } = this.props;
+    const { journeySlug, filename } = photoModalStore;
+
+    const photo = photoStore.getPhoto(journeySlug, filename);
 
     return (
       <Modal isOpen={photoModalStore.isOpen} className="PhotoModal">
-        {photo && (
-          <React.Fragment>
-            <ModalHeader toggle={photoModalStore.close}>
-              {photo.name}
-            </ModalHeader>
-            <ModalBody>
+        <ModalHeader toggle={photoModalStore.close}>
+          {photo ? photo.name : ""}
+        </ModalHeader>
+        <ModalBody>
+          <RequestStateLoader
+            state={photoStore.requestStatuses[`${journeySlug}/${filename}`]}
+            loaded={() => (
               <Row>
                 <Col xs="12" md="9" className="PhotoModal__photo">
                   {photo.confidentiality === 0 ? (
@@ -95,11 +104,11 @@ class PhotoModal extends React.Component {
                         </p>
                       </ListGroupItemText>
                     </ListGroupItem>
-                    {photo.camera_make && (
+                    {photo.cameraMake && (
                       <ListGroupItem>
                         <ListGroupItemHeading>Camera</ListGroupItemHeading>
                         <ListGroupItemText>
-                          {photo.camera_make} {photo.camera_model}
+                          {photo.cameraMake} {photo.cameraModel}
                         </ListGroupItemText>
                       </ListGroupItem>
                     )}
@@ -118,24 +127,22 @@ class PhotoModal extends React.Component {
                         </ListGroupItemText>
                       </ListGroupItem>
                     )}
-                    {photo.iso_speed && (
+                    {photo.isoSpeed && (
                       <ListGroupItem>
                         <ListGroupItemHeading>Settings</ListGroupItemHeading>
                         <ListGroupItemText>
-                          {photo.iso_speed && (
-                            <p>ISO speed: {photo.iso_speed}</p>
+                          {photo.isoSpeed && <p>ISO speed: {photo.isoSpeed}</p>}
+                          {photo.focalLength && (
+                            <p>Focal length: {photo.focalLength} mm</p>
                           )}
-                          {photo.focal_length && (
-                            <p>Focal length: {photo.focal_length} mm</p>
-                          )}
-                          {photo.f_value && <p>F-value: {photo.f_value}</p>}
+                          {photo.fValue && <p>F-value: {photo.fValue}</p>}
                           {photo.exposure && (
                             <p>Exposure: {photo.exposure} s</p>
                           )}
-                          {photo.flash_fired && (
+                          {photo.flashFired && (
                             <p>
                               Flash:{" "}
-                              {photo.flash_manual ? "Manual" : "Automatic"}
+                              {photo.flashManual ? "Manual" : "Automatic"}
                             </p>
                           )}
                         </ListGroupItemText>
@@ -188,9 +195,9 @@ class PhotoModal extends React.Component {
                   </ListGroup>
                 </Col>
               </Row>
-            </ModalBody>
-          </React.Fragment>
-        )}
+            )}
+          />
+        </ModalBody>
       </Modal>
     );
   }

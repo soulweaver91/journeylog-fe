@@ -9,14 +9,14 @@ const Photo = PhotoBase.named("Photo")
     longitude: types.maybe(types.number),
     description: types.maybe(types.string),
     tags: types.optional(types.array(types.reference(Tag)), []),
-    iso_speed: types.maybe(types.string),
-    focal_length: types.maybe(types.string),
-    f_value: types.maybe(types.string),
+    isoSpeed: types.maybe(types.string),
+    focalLength: types.maybe(types.string),
+    fValue: types.maybe(types.string),
     exposure: types.maybe(types.string),
-    camera_make: types.maybe(types.string),
-    camera_model: types.maybe(types.string),
-    flash_fired: types.optional(types.boolean, false),
-    flash_manual: types.optional(types.boolean, false)
+    cameraMake: types.maybe(types.string),
+    cameraModel: types.maybe(types.string),
+    flashFired: types.optional(types.boolean, false),
+    flashManual: types.optional(types.boolean, false)
   })
   .views((self) => ({
     get coords() {

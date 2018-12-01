@@ -16,7 +16,8 @@ const PhotoBase = types
     width: types.number,
     height: types.number,
     accessUrl: types.maybe(types.string),
-    thumbUrl: types.maybe(types.string)
+    thumbUrl: types.maybe(types.string),
+    journeySlug: types.string
   })
   .extend((self) => {
     let localTime = null;
@@ -25,10 +26,10 @@ const PhotoBase = types
     return {
       actions: {
         postProcessSnapshot: (snapshot) => {
-          localTime = DateTime.fromSQL(snapshot.timestamp, {
+          localTime = DateTime.fromISO(snapshot.timestamp, {
             zone: "UTC"
           }).setZone(self.timezone);
-          homeTime = DateTime.fromSQL(snapshot.timestamp, {
+          homeTime = DateTime.fromISO(snapshot.timestamp, {
             zone: "UTC"
           }).setZone(HOME_TIMEZONE);
 

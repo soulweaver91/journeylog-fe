@@ -16,10 +16,10 @@ class PhotoCard extends React.PureComponent {
     return (
       <Card className="PhotoCard">
         <a
-          href={photoModalStore.getHash(photo)}
+          href={photoModalStore.getHash(photo.journeySlug, photo.filename)}
           onClick={(e) => {
             e.preventDefault();
-            photoModalStore.open(photo);
+            photoModalStore.open(photo.journeySlug, photo.filename);
           }}
           style={{
             width: size || undefined

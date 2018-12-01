@@ -5,6 +5,7 @@ import MapLocationStore from "./MapLocationStore";
 import RequestState from "./util/RequestState";
 import PhotoModalStore from "./PhotoModalStore";
 import AboutModalStore from "./AboutModalStore";
+import PhotoStore from "./PhotoStore";
 
 const RootStore = types
   .model("RootStore", {
@@ -12,6 +13,7 @@ const RootStore = types
     tagStore: types.maybe(TagStore, {}),
     mapLocationStore: types.maybe(MapLocationStore, {}),
     photoModalStore: types.maybe(PhotoModalStore, {}),
+    photoStore: types.maybe(PhotoStore, {}),
     aboutModalStore: types.maybe(AboutModalStore, {})
   })
   .actions((self) => ({
