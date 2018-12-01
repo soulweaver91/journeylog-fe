@@ -2,7 +2,6 @@ import { types, getType, flow } from "mobx-state-tree";
 import JournalPageBase from "./JournalPageBase";
 import MapLocationVisit from "./MapLocationVisit";
 import MapPointVisit from "./MapPointVisit";
-import Photo from "./Photo";
 import JournalPage from "./JournalPage";
 import RequestState, { RequestStateType } from "../stores/util/RequestState";
 import Api from "../util/Api";
@@ -16,8 +15,6 @@ const Journey = types
     journalPagesCount: types.number,
     mapLocations: types.optional(types.array(MapLocationVisit), []),
     mapRoute: types.optional(types.array(MapPointVisit), []),
-    // TODO
-    // photos: types.optional(types.array(Photo), []),
     photosCount: types.number,
     background: types.maybe(types.string),
 
@@ -29,11 +26,6 @@ const Journey = types
     },
     getPage(slug) {
       return self.journalPages.find((page) => page.slug === slug);
-    },
-    findPhoto(id) {
-      // TODO
-      // return self.photos.find((photo) => photo.filename === id);
-      return null;
     }
   }))
   .actions((self) => ({

@@ -61,7 +61,7 @@ class PhotoTag extends Tag {
     return (
       <BBCodeContext.Consumer>
         {(context) => (
-          <PhotoCard photo={context.journey.findPhoto(photoId)} size={96} />
+          <PhotoCard photo={context.page.findPhoto(photoId)} size={96} />
         )}
       </BBCodeContext.Consumer>
     );
