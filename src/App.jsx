@@ -6,6 +6,7 @@ import JourneyLog from "./components/JourneyLog";
 import RootStore from "./stores";
 import BrowserSupportBar from "./components/BrowserSupportBar";
 import AboutModal from "./components/AboutModal";
+import DefaultSpinner from "./components/loader/DefaultSpinner";
 
 const store = RootStore.create({
   journeyStore: {
@@ -38,13 +39,20 @@ class App extends Component {
         <Provider {...childStores}>
           <div className="App">
             {store.hasErrors ? (
-              <div className="center">
-                JourneyLog is currently unavailable. Please try again later.
+              <div className="App__whole-screen">
+                <div className="App__whole-screen-main-icon" />
+                <span>
+                  JourneyLog is currently unavailable. Please try again later.
+                </span>
               </div>
             ) : store.isLoaded ? (
               <JourneyLog />
             ) : (
-              <div className="center">Loading...</div>
+              <div className="App__whole-screen">
+                <div className="App__whole-screen-main-icon" />
+                <div className="center">JourneyLog is loading...</div>
+                <DefaultSpinner />
+              </div>
             )}
             <BrowserSupportBar />
             <AboutModal />
