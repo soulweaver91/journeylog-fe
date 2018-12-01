@@ -59,12 +59,10 @@ class JourneyView extends React.Component {
                     <Route
                       path={`${this.props.match.url}/:slug`}
                       render={({ match, location }) => {
-                        const page = journey.findPage(match.params.slug);
-
                         return (
                           <JournalPage
                             journey={journey}
-                            page={page}
+                            pageSlug={match.params.slug}
                             match={match}
                             location={location}
                           />

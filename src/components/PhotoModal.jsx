@@ -54,7 +54,7 @@ class PhotoModal extends React.Component {
               <Row>
                 <Col xs="12" md="9" className="PhotoModal__photo">
                   {photo.confidentiality === 0 ? (
-                    <img src={photo.fullUrl} alt="" />
+                    <img src={photo.accessUrl} alt="" />
                   ) : (
                     <span>
                       Viewing of this photo is restricted at this time because
@@ -175,7 +175,7 @@ class PhotoModal extends React.Component {
                     {photo.confidentiality === 0 && (
                       <ListGroupItem
                         tag="a"
-                        href={photo.fullUrl}
+                        href={photo.accessUrl}
                         target="_blank"
                       >
                         View in full size{" "}
