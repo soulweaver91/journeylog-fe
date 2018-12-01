@@ -12,10 +12,14 @@ const PhotoStore = types
     photoSearchResults: types.optional(
       types.map(
         types.model({
-          next: types.maybe(types.string),
-          previous: types.maybe(types.string),
-          results: types.reference(Photo),
-          count: types.number
+          links: types.model({
+            next: types.maybe(types.string),
+            previous: types.maybe(types.string)
+          }),
+          results: types.array(types.reference(Photo)),
+          count: types.number,
+          perPage: types.number,
+          totalPages: types.number
         })
       ),
       {}
@@ -26,29 +30,38 @@ const PhotoStore = types
       const key = "q" + JSON.stringify(query);
 
       try {
-        if (self.photoSearchResults[key]) {
-          return self.photoSearchResults[key];
+        const preloaded = self.photoSearchResults.get(key);
+        if (preloaded) {
+          return preloaded;
         }
 
-        self.requestStatuses[key] = RequestState.LOADING;
+        self.requestStatuses.set(key, RequestState.LOADING);
 
-        const results = yield Api.request("photos", query);
+        const results = yield Api.request("photos", {
+          params: query
+        });
 
         results.results.forEach((photo) => {
-          self.photos.set(photo.id, photo);
-          self.photosByString.set(
-            `${photo.journeySlug}/${photo.filename}`,
-            photo.id
-          );
+          const photoKey = `${photo.journeySlug}/${photo.filename}`;
+
+          // If already loaded by some other source (such as a modal
+          // on page load), don't do anything to it.
+          // Page load accurate caching
+          if (!self.photos.get(photo.id)) {
+            self.photos.set(photo.id, photo);
+          }
+
+          self.photosByString.set(photoKey, photo.id);
+          self.requestStatuses.set(photoKey, RequestState.LOADED);
         });
         results.results = results.results.map((photo) => photo.id);
 
-        self.photoSearchResults[key] = results;
-        self.requestStatuses[key] = RequestState.LOADED;
+        self.photoSearchResults.set(key, results);
+        self.requestStatuses.set(key, RequestState.LOADED);
 
-        return results.results;
+        return self.photoSearchResults.get(key);
       } catch (e) {
-        self.requestStatuses[key] = RequestState.ERROR;
+        self.requestStatuses.set(key, RequestState.ERROR);
         console.log(e);
         throw e;
       }
@@ -57,8 +70,9 @@ const PhotoStore = types
       const key = `${journeySlug}/${filename}`;
 
       try {
-        if (self.getPhoto(journeySlug, filename)) {
-          return null;
+        const preloaded = self.getPhoto(journeySlug, filename);
+        if (preloaded) {
+          return preloaded;
         }
 
         self.requestStatuses.set(key, RequestState.LOADING);
@@ -71,6 +85,8 @@ const PhotoStore = types
         self.photosByString.set(key, photo.id);
 
         self.requestStatuses.set(key, RequestState.LOADED);
+
+        return self.getPhoto(journeySlug, filename);
       } catch (e) {
         self.requestStatuses.set(key, RequestState.ERROR);
         console.log(e);
@@ -81,6 +97,12 @@ const PhotoStore = types
   .views((self) => ({
     getPhoto(journeySlug, filename) {
       return self.photosByString.get(`${journeySlug}/${filename}`);
+    },
+    getResultsForQuery(query) {
+      return self.photoSearchResults.get("q" + JSON.stringify(query));
+    },
+    getStatusForQuery(query) {
+      return self.requestStatuses.get("q" + JSON.stringify(query));
     }
   }));
 

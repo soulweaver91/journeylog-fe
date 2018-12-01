@@ -103,7 +103,13 @@ class JournalOverviewPage extends React.Component {
             />
             <Route
               path={`${this.props.match.url}/gallery`}
-              render={() => <Gallery photos={[]} />}
+              render={() => (
+                <Gallery
+                  query={{
+                    journey: journey.slug
+                  }}
+                />
+              )}
             />
             <Route
               path={`${this.props.match.url}/map`}

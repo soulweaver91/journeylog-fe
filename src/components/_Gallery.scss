@@ -1,9 +1,26 @@
 .Gallery {
+  .Gallery__filters {
+    display: flex;
+    flex-direction: row;
+
+    .form-inline {
+      margin: 0 1em 0 0;
+    }
+  }
+
+  .Gallery__data {
+    margin-top: 0.5em;
+  }
+
   .Gallery__photos {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0.5em;
+    margin: 1em 0.5em;
     justify-content: center;
+  }
+
+  .RequestStateLoader__loading {
+    margin-top: 1em;
   }
 }

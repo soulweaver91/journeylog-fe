@@ -8,6 +8,7 @@ import Gallery from "./Gallery";
 import parser, { BBCodeContext } from "../util/BBCodeParser";
 import { inject, observer } from "mobx-react";
 import RequestStateLoader from "./loader/RequestStateLoader";
+import { DateTime } from "luxon";
 
 @observer
 class JournalPage extends React.Component {
@@ -40,6 +41,26 @@ class JournalPage extends React.Component {
         this.scrollContainer.scrollTop = 0;
       }
     }
+  };
+
+  getGalleryQuery = (journey, page) => {
+    const query = {
+      journey: journey.slug
+    };
+
+    if (page.dateStart) {
+      query.after = page.dateStart;
+    }
+
+    if (page.dateEnd) {
+      query.before = page.dateEnd;
+    } else if (page.dateStart) {
+      query.before = DateTime.fromISO(page.dateStart)
+        .plus({ days: 1 })
+        .toISO();
+    }
+
+    return query;
   };
 
   render() {
@@ -112,7 +133,9 @@ class JournalPage extends React.Component {
                   />
                   <Route
                     path={`${match.url}/gallery`}
-                    render={() => <Gallery photos={[]} />}
+                    render={() => (
+                      <Gallery query={this.getGalleryQuery(journey, page)} />
+                    )}
                   />
                   <Route
                     path={`${match.url}/map`}
