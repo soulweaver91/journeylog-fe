@@ -10,23 +10,14 @@ import { inject, observer } from "mobx-react";
 import RequestStateLoader from "./loader/RequestStateLoader";
 import { DateTime } from "luxon";
 
+export const JournalPageModules = {
+  JOURNAL: 1,
+  GALLERY: 2,
+  MAP: 3
+};
+
 @observer
 class JournalPage extends React.Component {
-  tabs = [
-    {
-      text: "Journal",
-      id: "journal"
-    },
-    {
-      text: "Gallery",
-      id: "gallery"
-    },
-    {
-      text: "Map",
-      id: "map"
-    }
-  ];
-
   scrollContainer = null;
 
   componentWillMount = () => {
@@ -41,6 +32,45 @@ class JournalPage extends React.Component {
         this.scrollContainer.scrollTop = 0;
       }
     }
+  };
+
+  getTabs = () => {
+    const { mapLocationStore } = this.props;
+
+    return [
+      {
+        moduleId: JournalPageModules.JOURNAL,
+        text: "Journal",
+        id: "journal",
+        content: (journey, page) => (
+          <div>
+            <BBCodeContext.Provider
+              value={{
+                journey,
+                page,
+                mapLocationStore
+              }}
+            >
+              {parser.toReact(page.text)}
+            </BBCodeContext.Provider>
+          </div>
+        )
+      },
+      {
+        moduleId: JournalPageModules.GALLERY,
+        text: "Gallery",
+        id: "gallery",
+        content: (journey, page) => (
+          <Gallery query={this.getGalleryQuery(journey, page)} />
+        )
+      },
+      {
+        moduleId: JournalPageModules.MAP,
+        text: "Map",
+        id: "map",
+        content: () => <JournalPageMap />
+      }
+    ];
   };
 
   getGalleryQuery = (journey, page) => {
@@ -64,13 +94,17 @@ class JournalPage extends React.Component {
   };
 
   render() {
-    const { journey, match, location, pageSlug, mapLocationStore } = this.props;
+    const { journey, match, location, pageSlug } = this.props;
     const page = journey.getPage(pageSlug);
 
     const displayName = `${journey.name} – ${
       page ? page.displayName : pageSlug
     }`;
     const activePage = Util.getNextPathElement(location, match);
+
+    const enabledTabs = this.getTabs().filter(
+      (tab) => page.disabledModules.indexOf(tab.moduleId) === -1
+    );
 
     return (
       <div className="JournalPage">
@@ -90,7 +124,7 @@ class JournalPage extends React.Component {
             <Fragment>
               <div className="JournalPage__nav">
                 <Nav tabs>
-                  {this.tabs.map((tab) => (
+                  {enabledTabs.map((tab) => (
                     <NavItem key={tab.id}>
                       <NavLink
                         tag={Link}
@@ -115,33 +149,17 @@ class JournalPage extends React.Component {
                 ref={(el) => (this.scrollContainer = el)}
               >
                 <Switch>
-                  <Route
-                    path={`${match.url}/journal`}
-                    render={() => (
-                      <div>
-                        <BBCodeContext.Provider
-                          value={{
-                            journey,
-                            page,
-                            mapLocationStore
-                          }}
-                        >
-                          {parser.toReact(page.text)}
-                        </BBCodeContext.Provider>
-                      </div>
-                    )}
+                  {enabledTabs.map((tab) => (
+                    <Route
+                      path={`${match.url}/${tab.id}`}
+                      render={() => tab.content(journey, page)}
+                      key={tab.moduleId}
+                    />
+                  ))}
+                  <Redirect
+                    path={`${match.url}`}
+                    to={`${match.url}/${enabledTabs[0].id}`}
                   />
-                  <Route
-                    path={`${match.url}/gallery`}
-                    render={() => (
-                      <Gallery query={this.getGalleryQuery(journey, page)} />
-                    )}
-                  />
-                  <Route
-                    path={`${match.url}/map`}
-                    render={() => <JournalPageMap />}
-                  />
-                  <Redirect path={`${match.url}`} to={`${match.url}/journal`} />
                 </Switch>
               </div>
             </Fragment>

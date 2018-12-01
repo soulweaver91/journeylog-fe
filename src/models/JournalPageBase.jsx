@@ -12,7 +12,8 @@ const JournalPageBase = types
     dateEnd: types.maybe(types.string),
     name: types.maybe(types.string),
     photosCount: types.number,
-    type: types.enumeration(Object.values(JournalPageType))
+    type: types.enumeration(Object.values(JournalPageType)),
+    disabledModules: types.optional(types.array(types.number), [])
   })
   .views((self) => ({
     get route() {
