@@ -11,5 +11,20 @@
     .list-group-item:last-child {
       border-radius: 0;
     }
+
+    .list-group-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .JournalPagesList__page-indicator {
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      font-size: 70%;
+      text-align: center;
+      margin: 0 0 -0.25em 0.5em;
+    }
   }
 }
