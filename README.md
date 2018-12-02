@@ -19,7 +19,7 @@ Development
 Quick guide:
 - Create `.env.development` and `.env.production`, define `REACT_APP_API_URL` (API root URL) and `REACT_APP_URL_PREFIX`
   (deployment location subdirectory the files go to)
-- Edit `homepage` in `package.json` if you set any subfolder to `REACT_APP_URL_PREFIX` in production
+- Edit `homepage` in `package.json` to match your `REACT_APP_URL_PREFIX`
 - `npm start`
 - Start editing
   
@@ -28,5 +28,5 @@ Long guide: see `README-CRA.md`.
 Deployment
 ----------
 
-- `npm run build --production`
+- `npm run build`
 - Copy the entirety of `build/` to the target location
