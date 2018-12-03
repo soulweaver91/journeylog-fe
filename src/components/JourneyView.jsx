@@ -20,19 +20,23 @@ class JourneyView extends React.Component {
 
     return (
       <div className="JourneyView__container">
-        <Helmet>
-          <title>{journey.name} – JourneyLog</title>
-        </Helmet>
+        {journey && (
+          <Helmet>
+            <title>{journey.name} – JourneyLog</title>
+          </Helmet>
+        )}
         <JourneyNavbar journey={journey} />
         <Container className="JourneyView">
           <div className="JourneyView__inner border">
             {!journey ? (
-              <Row>
-                <Col xs="12">
-                  This journey doesn't exist.{" "}
+              <div className="JourneyView__invalid">
+                <span>
+                  The linked journey doesn't exist. It might have been removed.
+                </span>
+                <span>
                   <Link to="/">Return to listing</Link>
-                </Col>
-              </Row>
+                </span>
+              </div>
             ) : (
               <Row>
                 <Col xs="12" md="3" className="d-none d-md-block">

@@ -18,7 +18,9 @@ class JourneyNavbar extends React.Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <span>Journey: {this.props.journey.name || "???"}</span>
+            <span>
+              Journey: {this.props.journey ? this.props.journey.name : "???"}
+            </span>
           </NavItem>
         </Nav>
         <Nav navbar className="ml-auto">
