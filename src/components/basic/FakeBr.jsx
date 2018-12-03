@@ -1,5 +1,5 @@
 import React from "react";
 
-const FakeBr = () => <div className="FakeBr" />;
+const FakeBr = () => <span className="FakeBr" />;
 
 export default FakeBr;
