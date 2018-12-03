@@ -16,6 +16,7 @@ module.exports = function override(config, env) {
   });
 
   config = rewireDefinePlugin(config, env, {
+    'process.env.GIT_PUBLIC_REPOSITORY': JSON.stringify('https://github.com/soulweaver91/journeylog-fe'),
     'process.env.GIT_VERSION': JSON.stringify(gitRevisionPlugin.version()),
     'process.env.GIT_COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
     'process.env.GIT_BRANCH': JSON.stringify(gitRevisionPlugin.branch()),

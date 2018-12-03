@@ -28,9 +28,18 @@ class AboutModal extends React.Component {
           </p>
 
           <p className="AboutModal__build">
-            Build: git-{process.env.GIT_BRANCH}-{process.env.GIT_VERSION} ({
-              process.env.BUILD_DATE
-            })
+            Build:{" "}
+            <a
+              href={`${process.env.GIT_PUBLIC_REPOSITORY}/commit/${
+                process.env.GIT_COMMITHASH
+              }`}
+              target="_blank"
+              rel="noopener"
+            >
+              git-
+              {process.env.GIT_BRANCH}-{process.env.GIT_VERSION}
+            </a>{" "}
+            ({process.env.BUILD_DATE})
           </p>
         </ModalBody>
       </Modal>
