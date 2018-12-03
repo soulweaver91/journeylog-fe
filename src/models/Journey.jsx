@@ -1,4 +1,4 @@
-import { types, getType, flow } from "mobx-state-tree";
+import { types, getType, flow, getRoot } from "mobx-state-tree";
 import JournalPageBase from "./JournalPageBase";
 import MapLocationVisit from "./MapLocationVisit";
 import MapPointVisit from "./MapPointVisit";
@@ -18,14 +18,28 @@ const Journey = types
     photosCount: types.number,
     background: types.maybe(types.string),
 
-    pageRequestStatuses: types.optional(types.map(RequestStateType), {})
+    pageRequestStatuses: types.optional(types.map(RequestStateType), {}),
+
+    mapLocationVisits: types.optional(types.array(MapLocationVisit), []),
+    mapLocationVisitStatus: types.optional(
+      RequestStateType,
+      RequestState.UNINITIALIZED
+    )
   })
   .views((self) => ({
     get route() {
       return `/journey/${self.slug}`;
     },
+    get uniqueVisitedLocations() {
+      return Array.from(
+        new Set(self.mapLocationVisits.map((visit) => visit.location))
+      );
+    },
     getPage(slug) {
       return self.journalPages.find((page) => page.slug === slug);
+    },
+    findLocationVisit(id) {
+      return self.mapLocationVisits.find((visit) => visit.id === id);
     }
   }))
   .actions((self) => ({
@@ -51,6 +65,24 @@ const Journey = types
         self.pageRequestStatuses.set(slug, RequestState.LOADED);
       } catch (e) {
         self.pageRequestStatuses.set(slug, RequestState.ERROR);
+        console.error(e.toString());
+        throw e;
+      }
+    }),
+    loadLocations: () =>
+      getRoot(self).mapLocationStore.loadLocations(self.slug),
+    loadLocationVisits: flow(function*() {
+      try {
+        if (self.mapLocationVisitStatus === RequestState.LOADED) {
+          return null;
+        }
+
+        self.mapLocationVisits = yield Api.request(
+          `/journeys/${self.slug}/location-visits/`
+        );
+        self.mapLocationVisitStatus = RequestState.LOADED;
+      } catch (e) {
+        self.mapLocationVisitStatus = RequestState.ERROR;
         console.error(e.toString());
         throw e;
       }

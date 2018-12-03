@@ -35,12 +35,39 @@ class SectionTag extends Tag {
       <BBCodeContext.Consumer>
         {(context) => {
           const attributes = {
+            // Deprecated, will not work without a matching journey-location visit already present
             location:
               context.mapLocationStore.findLocation(this.params.location) ||
               undefined,
             detached: this.params.detached === "true" || false,
             startTime: this.params.startTime,
             endTime: this.params.endTime
+          };
+
+          return (
+            <JournalSection {...attributes}>
+              {this.getComponents().map(convertNewlines)}
+            </JournalSection>
+          );
+        }}
+      </BBCodeContext.Consumer>
+    );
+  }
+}
+
+class LocationVisitTag extends Tag {
+  toReact() {
+    return (
+      <BBCodeContext.Consumer>
+        {(context) => {
+          const visit = context.journey.findLocationVisit(
+            Number(this.params.visit)
+          );
+
+          const attributes = {
+            location: visit ? visit.location : undefined,
+            detached: this.params.detached === "true" || false,
+            startTime: visit ? visit.timestamp : undefined
           };
 
           return (
@@ -83,6 +110,7 @@ class RootTag extends Tag {
 const parser = new Parser(["b", "i", "s", "list", "*", "url"]);
 const liteParser = new Parser(["b", "i", "s", "list", "*", "url"]);
 
+parser.registerTag("locationvisit", LocationVisitTag);
 parser.registerTag("section", SectionTag);
 parser.registerTag("photo", PhotoTag);
 parser.registerTag("quote", QuoteTag);

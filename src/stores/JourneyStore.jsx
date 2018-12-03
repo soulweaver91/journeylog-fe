@@ -11,7 +11,8 @@ const JourneyStore = types
   })
   .views((self) => {
     return {
-      findJourney: (id) => self.journeys.find((journey) => journey.slug === id)
+      findJourney: (slug) =>
+        self.journeys.find((journey) => journey.slug === slug)
     };
   })
   .actions((self) => ({
@@ -19,7 +20,7 @@ const JourneyStore = types
       try {
         self.status = RequestState.LOADING;
 
-        self.journeys = yield Api.request("journeys");
+        self.journeys = yield Api.request("journeys/");
         self.status = RequestState.LOADED;
       } catch (e) {
         self.status = RequestState.ERROR;

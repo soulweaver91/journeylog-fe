@@ -54,12 +54,16 @@ class JournalOverviewPage extends React.Component {
               <span>{journey.journalPagesCount}</span>
               <span className="sr-only"> journal pages</span>
             </li>
-            {/* <li title={journey.map_locations.length + " locations visited"}>
+            <li
+              title={
+                journey.uniqueVisitedLocations.length + " locations visited"
+              }
+            >
               <FontAwesomeIcon icon="map-pin" />
-              <span>{journey.map_locations.length}</span>
+              <span>{journey.uniqueVisitedLocations.length}</span>
               <span className="sr-only"> visited locations</span>
             </li>
-            <li title={journey.map_route.length + " points in timeline"}>
+            {/* <li title={journey.map_route.length + " points in timeline"}>
               <FontAwesomeIcon icon="route" />
               <span>{journey.map_route.length}</span>
               <span className="sr-only"> map timeline points</span>

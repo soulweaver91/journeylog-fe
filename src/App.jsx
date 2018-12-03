@@ -16,7 +16,7 @@ const store = RootStore.create({
     tags: []
   },
   mapLocationStore: {
-    mapLocations: []
+    mapLocations: {}
   },
   photoModalStore: {
     isOpen: false

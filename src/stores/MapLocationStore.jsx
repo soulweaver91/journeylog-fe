@@ -6,26 +6,40 @@ import Api from "../util/Api";
 
 const MapLocationStore = types
   .model("MapLocationStore", {
-    mapLocations: types.array(MapLocation),
-    status: types.maybe(RequestStateType, RequestState.UNINITIALIZED)
+    mapLocations: types.optional(types.map(MapLocation), {}),
+    journeyLocationStatuses: types.optional(types.map(RequestStateType), {})
   })
   .actions((self) => ({
-    loadLocations: flow(function*() {
+    loadLocations: flow(function*(journeySlug) {
       try {
-        self.status = RequestState.LOADING;
+        if (
+          self.journeyLocationStatuses.get(journeySlug) === RequestState.LOADED
+        ) {
+          return self.journeyLocationStatuses.get(journeySlug);
+        }
 
-        self.mapLocations = yield Api.request("locations");
-        self.status = RequestState.LOADED;
+        self.journeyLocationStatuses.set(journeySlug, RequestState.LOADING);
+
+        const newLocations = yield Api.request("locations/", {
+          params: {
+            journey: journeySlug
+          }
+        });
+
+        newLocations.forEach((location) => {
+          self.mapLocations.set(location.id.toString(), location);
+        });
+
+        self.journeyLocationStatuses.set(journeySlug, RequestState.LOADED);
       } catch (e) {
-        self.status = RequestState.ERROR;
+        self.journeyLocationStatuses.set(journeySlug, RequestState.ERROR);
         console.log(e);
         throw e;
       }
     })
   }))
   .views((self) => ({
-    findLocation: (id) =>
-      self.mapLocations.find((location) => location.id === parseInt(id, 10))
+    findLocation: (id) => self.mapLocations.get(id.toString())
   }));
 
 export default MapLocationStore;

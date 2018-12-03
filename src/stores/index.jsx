@@ -19,24 +19,19 @@ const RootStore = types
   .actions((self) => ({
     bootstrap: function() {
       self.tagStore.loadTags();
-      self.mapLocationStore.loadLocations();
       self.journeyStore.loadJourneys();
     }
   }))
   .views((self) => ({
     get isLoaded() {
-      return [
-        self.journeyStore.status,
-        self.mapLocationStore.status,
-        self.tagStore.status
-      ].every((status) => status === RequestState.LOADED);
+      return [self.journeyStore.status, self.tagStore.status].every(
+        (status) => status === RequestState.LOADED
+      );
     },
     get hasErrors() {
-      return [
-        self.journeyStore.status,
-        self.mapLocationStore.status,
-        self.tagStore.status
-      ].some((status) => status === RequestState.ERROR);
+      return [self.journeyStore.status, self.tagStore.status].some(
+        (status) => status === RequestState.ERROR
+      );
     }
   }));
 

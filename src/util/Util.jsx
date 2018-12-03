@@ -1,4 +1,12 @@
+import RequestState from "../stores/util/RequestState";
+
 const SI_PREFIXES = ["", "ki", "Mi", "Gi", "Ti", "Pi"];
+const STATE_PRECEDENCE = [
+  RequestState.ERROR,
+  RequestState.LOADING,
+  RequestState.UNINITIALIZED,
+  RequestState.LOADED
+];
 
 export default {
   getNextPathElement(location, match) {
@@ -43,5 +51,18 @@ export default {
     return `${lat[0]}°${lat[1]}'${lat[2]}" ${coordinate.lat < 0 ? "S" : "N"}, ${
       lng[0]
     }°${lng[1]}'${lng[2]}" ${coordinate.lng < 0 ? "W" : "E"}`;
+  },
+  combinedRequestState(states) {
+    let uniqueStates = new Set(
+      states.map((state) => state || RequestState.UNINITIALIZED)
+    );
+
+    for (let i = 0; i < STATE_PRECEDENCE.length; i++) {
+      if (uniqueStates.has(STATE_PRECEDENCE[i])) {
+        return STATE_PRECEDENCE[i];
+      }
+    }
+
+    return RequestState.LOADED;
   }
 };
