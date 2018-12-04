@@ -1,20 +1,54 @@
 import React from "react";
+import { GoogleMapComponent } from "./map/GoogleMapComponent";
+import LocationMarker from "./map/LocationMarker";
 import { Alert } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {Marker} from "react-google-maps";
-// import {GoogleMapComponent} from "./map/GoogleMapComponent";
 
 class JournalPageMap extends React.Component {
+  state = {
+    markerWithOpenInfoboxId: null
+  };
+
+  onClickMarker = (id) => {
+    this.setState((state) => ({
+      ...state,
+      markerWithOpenInfoboxId: id
+    }));
+  };
+
+  onCloseInfobox = (id) => {
+    if (id === this.state.markerWithOpenInfoboxId) {
+      this.setState((state) => ({
+        ...state,
+        markerWithOpenInfoboxId: null
+      }));
+    }
+  };
+
   render() {
+    const locations = this.props.locations
+      ? this.props.locations.filter(
+          (location) =>
+            location.latitude !== null && location.longitude !== null
+        )
+      : [];
+
     return (
       <div className="JournalPageMap">
-        <Alert color="warning">
-          <FontAwesomeIcon icon="exclamation-triangle" /> This feature has not
-          been implemented yet, but it will be added in the future.
-        </Alert>
-        {/* <GoogleMapComponent>
-
-        </GoogleMapComponent> */}
+        {locations && locations.length > 0 ? (
+          <GoogleMapComponent>
+            {locations.map((location) => (
+              <LocationMarker
+                location={location}
+                key={location.id}
+                onClick={this.onClickMarker}
+                onClose={this.onCloseInfobox}
+                open={location.id === this.state.markerWithOpenInfoboxId}
+              />
+            ))}
+          </GoogleMapComponent>
+        ) : (
+          <Alert color="warning">No map for this journal page available.</Alert>
+        )}
       </div>
     );
   }

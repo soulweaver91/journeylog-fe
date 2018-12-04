@@ -68,7 +68,9 @@ class JournalPage extends React.Component {
         moduleId: JournalPageModules.MAP,
         text: "Map",
         id: "map",
-        content: () => <JournalPageMap />
+        content: (journey, page) => {
+          return <JournalPageMap locations={page.uniqueVisitedLocations} />;
+        }
       }
     ];
   };

@@ -52,6 +52,13 @@ export default {
       lng[0]
     }°${lng[1]}'${lng[2]}" ${coordinate.lng < 0 ? "W" : "E"}`;
   },
+  parseCoordinateComponent(component) {
+    return component !== null &&
+      component !== undefined &&
+      !/^0\.0+$/.test(component)
+      ? Number(component)
+      : null;
+  },
   combinedRequestState(states) {
     let uniqueStates = new Set(
       states.map((state) => state || RequestState.UNINITIALIZED)

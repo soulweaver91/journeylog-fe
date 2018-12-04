@@ -4,22 +4,23 @@ import Color from "color";
 import LocationIcon from "./util/LocationIcon";
 import { getCoords } from "./util/SharedFunctions";
 import MapLocationName from "./MapLocationName";
+import Util from "../util/Util";
 
 const MapLocation = types
   .model("MapLocation", {
     id: types.identifier(types.number),
     name: types.string,
     names: types.optional(types.map(MapLocationName), {}),
-    latitude: types.number,
-    longitude: types.number,
+    latitude: types.maybe(types.number),
+    longitude: types.maybe(types.number),
     // using LocationIconType is too stringent; the model is outright rejected if the value is not known
     type: types.maybe(types.string),
     color: types.maybe(types.string)
   })
   .preProcessSnapshot(({ latitude, longitude, ...rest }) => ({
     ...rest,
-    latitude: Number(latitude),
-    longitude: Number(longitude)
+    latitude: Util.parseCoordinateComponent(latitude),
+    longitude: Util.parseCoordinateComponent(longitude)
   }))
   .views((self) => ({
     get icon() {

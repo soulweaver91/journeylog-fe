@@ -117,7 +117,9 @@ class JournalOverviewPage extends React.Component {
             />
             <Route
               path={`${this.props.match.url}/map`}
-              render={() => <JournalPageMap />}
+              render={() => (
+                <JournalPageMap locations={journey.uniqueVisitedLocations} />
+              )}
             />
             <Redirect
               path={`${this.props.match.url}`}
