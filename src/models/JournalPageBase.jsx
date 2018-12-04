@@ -1,4 +1,5 @@
 import { types, getParent } from "mobx-state-tree";
+import { DateTime } from "luxon";
 
 export const JournalPageType = {
   REGULAR: "REGULAR",
@@ -24,15 +25,17 @@ const JournalPageBase = types
         return self.name || "(unnamed page)";
       }
 
-      let text = new Date(self.dateStart).toLocaleDateString("en-GB", {
+      const dateStart = DateTime.fromISO(self.dateStart);
+      const dateEnd = DateTime.fromISO(self.dateEnd);
+      let text = dateStart.setLocale("en-GB").toLocaleString({
         year: "numeric",
         month: "long",
         day: "numeric"
       });
-      if (self.dateEnd && self.dateEnd !== "0000-00-00") {
+      if (dateStart.plus({ days: 1 }) < dateEnd) {
         text +=
           "–" +
-          new Date(self.dateEnd).toLocaleDateString("en-GB", {
+          dateEnd.setLocale("en-GB").toLocaleString({
             year: "numeric",
             month: "long",
             day: "numeric"
