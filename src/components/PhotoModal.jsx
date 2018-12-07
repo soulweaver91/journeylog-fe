@@ -121,6 +121,7 @@ class PhotoModal extends React.Component {
                             href={`https://www.google.com/maps/place/${
                               photo.latitude
                             },${photo.longitude}/@18z`}
+                            // eslint-disable-next-line react/jsx-no-target-blank
                             target="_blank"
                           >
                             {Util.formatCoordinate(photo.coords)}
@@ -184,6 +185,7 @@ class PhotoModal extends React.Component {
                       <ListGroupItem
                         tag="a"
                         href={photo.accessUrl}
+                        // eslint-disable-next-line react/jsx-no-target-blank
                         target="_blank"
                       >
                         View in full size{" "}

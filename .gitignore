@@ -25,3 +25,5 @@ src/**/*.css
 .env
 .env.development
 .env.production
+
+/dist
