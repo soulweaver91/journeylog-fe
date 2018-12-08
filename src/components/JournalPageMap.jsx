@@ -7,6 +7,47 @@ class JournalPageMap extends React.Component {
   state = {
     markerWithOpenInfoboxId: null
   };
+  mapRef = null;
+  deferredOperations = [];
+
+  componentDidMount() {
+    this.centerOnMarkers();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.locations !== prevProps.locations) {
+      this.centerOnMarkers();
+    }
+  }
+
+  setMapRef = (ref) => {
+    this.mapRef = ref;
+    this.deferredOperations.forEach((operation) => operation(ref));
+    this.deferredOperations = [];
+  };
+
+  whenMapLoaded = (func) => {
+    if (this.mapRef) {
+      func(this.mapRef);
+    } else {
+      this.deferredOperations.push(func);
+    }
+  };
+
+  centerOnMarkers = () => {
+    this.whenMapLoaded((map) => {
+      const google = window.google;
+
+      let bounds = new google.maps.LatLngBounds();
+      this.props.locations
+        .filter((location) => location.latitude && location.longitude)
+        .forEach((location) =>
+          bounds.extend({ lat: location.latitude, lng: location.longitude })
+        );
+
+      map.fitBounds(bounds);
+    });
+  };
 
   onClickMarker = (id) => {
     this.setState((state) => ({
@@ -35,7 +76,7 @@ class JournalPageMap extends React.Component {
     return (
       <div className="JournalPageMap">
         {locations && locations.length > 0 ? (
-          <GoogleMapComponent>
+          <GoogleMapComponent getRef={this.setMapRef}>
             {locations.map((location) => (
               <LocationMarker
                 location={location}
