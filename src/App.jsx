@@ -7,6 +7,8 @@ import RootStore from "./stores";
 import BrowserSupportBar from "./components/BrowserSupportBar";
 import AboutModal from "./components/AboutModal";
 import DefaultSpinner from "./components/loader/DefaultSpinner";
+import { MatchMediaProvider } from "mobx-react-matchmedia";
+import { UI_BREAKPOINTS } from "./util/Media";
 
 const store = RootStore.create({
   journeyStore: {
@@ -37,26 +39,28 @@ class App extends Component {
     return (
       <BrowserRouter basename={process.env.REACT_APP_URL_PREFIX}>
         <Provider {...childStores}>
-          <div className="App">
-            {store.hasErrors ? (
-              <div className="App__whole-screen">
-                <div className="App__whole-screen-main-icon" />
-                <span>
-                  JourneyLog is currently unavailable. Please try again later.
-                </span>
-              </div>
-            ) : store.isLoaded ? (
-              <JourneyLog />
-            ) : (
-              <div className="App__whole-screen">
-                <div className="App__whole-screen-main-icon" />
-                <div className="center">JourneyLog is loading...</div>
-                <DefaultSpinner />
-              </div>
-            )}
-            <BrowserSupportBar />
-            <AboutModal />
-          </div>
+          <MatchMediaProvider breakpoints={UI_BREAKPOINTS}>
+            <div className="App">
+              {store.hasErrors ? (
+                <div className="App__whole-screen">
+                  <div className="App__whole-screen-main-icon" />
+                  <span>
+                    JourneyLog is currently unavailable. Please try again later.
+                  </span>
+                </div>
+              ) : store.isLoaded ? (
+                <JourneyLog />
+              ) : (
+                <div className="App__whole-screen">
+                  <div className="App__whole-screen-main-icon" />
+                  <div className="center">JourneyLog is loading...</div>
+                  <DefaultSpinner />
+                </div>
+              )}
+              <BrowserSupportBar />
+              <AboutModal />
+            </div>
+          </MatchMediaProvider>
         </Provider>
       </BrowserRouter>
     );

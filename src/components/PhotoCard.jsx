@@ -1,11 +1,13 @@
 import React from "react";
 import { Card } from "reactstrap";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import LazyLoad from "react-lazyload";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UI_BREAKPOINTS } from "../util/Media";
 
 @inject("photoModalStore")
-class PhotoCard extends React.PureComponent {
+@observer
+class PhotoCard extends React.Component {
   render() {
     const { photo, photoModalStore, size } = this.props;
 
@@ -25,7 +27,11 @@ class PhotoCard extends React.PureComponent {
             width: size || undefined
           }}
         >
-          <LazyLoad height={size || 200} overflow={true}>
+          <LazyLoad
+            height={size || 200}
+            overflow={UI_BREAKPOINTS.noScroll}
+            offset={size * 1.5 || 200}
+          >
             {photo.confidentiality === 0 ? (
               <div
                 className="PhotoCard__img-container"

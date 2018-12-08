@@ -25,6 +25,7 @@
     "luxon": "^1.4.4",
     "mobx": "^4.5.1",
     "mobx-react": "^5.3.4",
+    "mobx-react-matchmedia": "^1.6.0",
     "mobx-state-tree": "^2.2.0",
     "modernizr": "^3.6.0",
     "modernizr-loader": "^1.0.1",
