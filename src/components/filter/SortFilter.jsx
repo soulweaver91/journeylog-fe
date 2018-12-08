@@ -12,7 +12,7 @@ class SortFilter extends React.Component {
 
   render() {
     return (
-      <Form inline>
+      <Form className="Filter Filter__sort-filter" inline>
         <Label>
           Sort by:
           <Input

@@ -1,5 +1,12 @@
 import React from "react";
-import { Form, Label, Input, Button } from "reactstrap";
+import {
+  Form,
+  Label,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  Button
+} from "reactstrap";
 
 class SearchFilter extends React.Component {
   state = {
@@ -13,18 +20,26 @@ class SearchFilter extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.submit} inline>
+      <Form
+        className="Filter Filter__sort-filter"
+        onSubmit={this.submit}
+        inline
+      >
         <Label>
           Filter by:
-          <Input
-            bsSize="sm"
-            value={this.state.value}
-            onChange={(e) => this.setState({ value: e.target.value })}
-          />
+          <InputGroup>
+            <Input
+              bsSize="sm"
+              value={this.state.value}
+              onChange={(e) => this.setState({ value: e.target.value })}
+            />
+            <InputGroupAddon addonType="append">
+              <Button size="sm" color="primary" onClick={this.submit}>
+                Filter
+              </Button>
+            </InputGroupAddon>
+          </InputGroup>
         </Label>
-        <Button size="sm" color="primary" onClick={this.submit}>
-          Filter
-        </Button>
       </Form>
     );
   }

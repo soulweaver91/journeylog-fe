@@ -2,9 +2,34 @@
   .Gallery__filters {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    grid-row-gap: $spacer / 2;
 
-    .form-inline {
+    .Filter {
       margin: 0 1em 0 0;
+
+      @include media-breakpoint-down(xs) {
+        width: 100%;
+        margin: 0;
+
+        label {
+          width: 100%;
+
+          > input,
+          > textarea,
+          > select,
+          > .input-group {
+            width: 100%;
+            margin-left: 0;
+          }
+
+          > .input-group input,
+          > .input-group textarea,
+          > .input-group select {
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 
