@@ -1,6 +1,10 @@
 import React from "react";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
-import classNames from "classnames";
+import {
+  Redirect,
+  Route,
+  Switch,
+  NavLink as RouterNavLink
+} from "react-router-dom";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import Util from "../util/Util";
 import Gallery from "./Gallery";
@@ -75,11 +79,8 @@ class JournalOverviewPage extends React.Component {
             {this.tabs.map((tab) => (
               <NavItem key={tab.id}>
                 <NavLink
-                  tag={Link}
+                  tag={RouterNavLink}
                   to={`${this.props.match.url}/${tab.id}`}
-                  className={classNames({
-                    active: activePage === tab.id
-                  })}
                 >
                   {tab.text}
                 </NavLink>

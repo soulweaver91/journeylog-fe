@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
-import classNames from "classnames";
+import {
+  Link,
+  Redirect,
+  Route,
+  Switch,
+  NavLink as RouterNavLink
+} from "react-router-dom";
 import Util from "../util/Util";
 import JournalPageMap from "./JournalPageMap";
 import Gallery from "./Gallery";
@@ -129,11 +134,8 @@ class JournalPage extends React.Component {
                   {enabledTabs.map((tab) => (
                     <NavItem key={tab.id}>
                       <NavLink
-                        tag={Link}
+                        tag={RouterNavLink}
                         to={`${match.url}/${tab.id}`}
-                        className={classNames({
-                          active: activePage === tab.id
-                        })}
                       >
                         {tab.text}
                       </NavLink>

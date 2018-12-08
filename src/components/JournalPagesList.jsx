@@ -1,6 +1,6 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class JournalPagesList extends React.Component {
@@ -10,13 +10,13 @@ class JournalPagesList extends React.Component {
         <ListGroup>
           <ListGroupItem
             key="_overview"
-            tag={NavLink}
+            tag={RouterNavLink}
             to={`${this.props.journey.route}/overview`}
           >
             Overview
           </ListGroupItem>
           {this.props.journey.journalPages.map((page) => (
-            <ListGroupItem key={page.slug} tag={NavLink} to={page.route}>
+            <ListGroupItem key={page.slug} tag={RouterNavLink} to={page.route}>
               <span className="JournalPagesList__page-name">
                 {page.displayName}
               </span>
