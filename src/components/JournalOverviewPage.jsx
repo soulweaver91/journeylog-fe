@@ -51,9 +51,9 @@ class JournalOverviewPage extends React.Component {
     );
 
     return (
-      <div className="JournalPage">
+      <div className={`JournalPage JournalPage--${activePage}`}>
         <h2
-          className={`JournalPage__title JournalPage__overview-title JournalPage__title--${activePage}`}
+          className="JournalPage__title JournalPage__overview-title"
           style={{
             backgroundImage: journey.background
               ? `url(${journey.background})`

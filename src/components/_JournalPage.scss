@@ -18,15 +18,6 @@
       filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
     }
 
-    &.JournalPage__overview-title.JournalPage__title--journal {
-      padding: 3em 0.5em;
-      font-size: $font-size-base * 2.5;
-
-      @media (max-height: 700px) {
-        padding: 0.5em;
-      }
-    }
-
     .JournalPage__key-points {
       display: flex;
       flex-direction: row;
@@ -50,6 +41,15 @@
         font-weight: bold;
         align-items: center;
       }
+    }
+  }
+
+  &.JournalPage--journal .JournalPage__overview-title {
+    padding: 3em 0.5em;
+    font-size: $font-size-base * 2.5;
+
+    @media (max-height: 700px) {
+      padding: 0.5em;
     }
   }
 
@@ -89,5 +89,9 @@
         }
       }
     }
+  }
+
+  &.JournalPage--map .JournalPage__content {
+    padding: 0;
   }
 }
