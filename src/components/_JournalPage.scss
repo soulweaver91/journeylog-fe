@@ -18,7 +18,7 @@
       filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
     }
 
-    &.JournalPage__overview-title {
+    &.JournalPage__overview-title.JournalPage__title--journal {
       padding: 3em 0.5em;
       font-size: $font-size-base * 2.5;
 

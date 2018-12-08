@@ -111,7 +111,7 @@ class JournalPage extends React.Component {
     return (
       <div className="JournalPage">
         <h2
-          className="JournalPage__title"
+          className={`JournalPage__title JournalPage__title--${activePage}`}
           style={{
             backgroundImage: journey.background
               ? `url(${journey.background})`
