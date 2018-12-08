@@ -61,4 +61,33 @@
       overflow: auto;
     }
   }
+
+  .JournalOverviewPage__mobile-page-toggler {
+    margin-left: auto;
+  }
+
+  .JournalOverviewPage__mobile-pages-list {
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-bottom: 1px solid $border-color;
+
+    .JournalPagesList {
+      overflow-x: visible;
+      overflow-y: visible;
+      border-right-width: 0;
+
+      .list-group {
+        margin: 0;
+
+        .list-group-item {
+          border-width: 1px 0;
+
+          &:last-child {
+            border-bottom-width: 0;
+          }
+        }
+      }
+    }
+  }
 }

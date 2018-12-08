@@ -5,14 +5,22 @@ import {
   Switch,
   NavLink as RouterNavLink
 } from "react-router-dom";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import { Nav, NavItem, NavLink, Collapse } from "reactstrap";
 import Util from "../util/Util";
 import Gallery from "./Gallery";
 import JournalPageMap from "./JournalPageMap";
 import { liteParser } from "../util/BBCodeParser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UI_BREAKPOINTS } from "../util/Media";
+import JournalPagesList from "./JournalPagesList";
+import { observer } from "mobx-react";
 
+@observer
 class JournalOverviewPage extends React.Component {
+  state = {
+    mobilePagesCollapseOpen: false
+  };
+
   tabs = [
     {
       text: "Journal",
@@ -27,6 +35,13 @@ class JournalOverviewPage extends React.Component {
       id: "map"
     }
   ];
+
+  toggleMobilePagesCollapse = () => {
+    this.setState((state) => ({
+      ...state,
+      mobilePagesCollapseOpen: !state.mobilePagesCollapseOpen
+    }));
+  };
 
   render() {
     const { journey } = this.props;
@@ -86,10 +101,29 @@ class JournalOverviewPage extends React.Component {
                 </NavLink>
               </NavItem>
             ))}
-            <NavItem>
-              <div className="d-md-none">TODO mobile navigation</div>
-            </NavItem>
+            {UI_BREAKPOINTS.xs && (
+              <NavItem className="JournalOverviewPage__mobile-page-toggler">
+                <NavLink href="#" onClick={this.toggleMobilePagesCollapse}>
+                  <FontAwesomeIcon icon="bars" /> Pages{" "}
+                  <FontAwesomeIcon
+                    icon={
+                      this.state.mobilePagesCollapseOpen
+                        ? "caret-up"
+                        : "caret-down"
+                    }
+                  />
+                </NavLink>
+              </NavItem>
+            )}
           </Nav>
+          {UI_BREAKPOINTS.xs && (
+            <Collapse
+              className="JournalOverviewPage__mobile-pages-list"
+              isOpen={this.state.mobilePagesCollapseOpen}
+            >
+              <JournalPagesList journey={journey} />
+            </Collapse>
+          )}
         </div>
         <div className="JournalPage__content">
           <Switch>
