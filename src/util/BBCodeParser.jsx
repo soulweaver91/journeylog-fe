@@ -36,13 +36,7 @@ class SectionTag extends Tag {
       <BBCodeContext.Consumer>
         {(context) => {
           const attributes = {
-            // Deprecated, will not work without a matching journey-location visit already present
-            location:
-              context.mapLocationStore.findLocation(this.params.location) ||
-              undefined,
-            detached: this.params.detached === "true" || false,
-            startTime: this.params.startTime,
-            endTime: this.params.endTime
+            detached: this.params.detached === "true" || false
           };
 
           return (
