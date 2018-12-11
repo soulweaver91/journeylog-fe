@@ -3,6 +3,7 @@ import { Parser, Tag } from "bbcode-to-react";
 import JournalSection from "../components/JournalSection";
 import PhotoCard from "../components/PhotoCard";
 import FakeBr from "../components/basic/FakeBr";
+import { DateTime } from "luxon";
 
 const BBCodeContext = React.createContext();
 
@@ -67,7 +68,11 @@ class LocationVisitTag extends Tag {
           const attributes = {
             location: visit ? visit.location : undefined,
             detached: this.params.detached === "true" || false,
-            startTime: visit ? visit.timestamp : undefined
+            startTime: visit
+              ? DateTime.fromISO(visit.timestamp, {
+                  zone: "UTC"
+                }).toLocaleString(DateTime.TIME_SIMPLE)
+              : undefined
           };
 
           return (
