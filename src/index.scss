@@ -129,3 +129,7 @@ body {
     background-size: contain;
   }
 }
+
+a.list-group-item:hover {
+  text-decoration: none;
+}
