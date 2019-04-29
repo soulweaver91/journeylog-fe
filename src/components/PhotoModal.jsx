@@ -41,8 +41,8 @@ class PhotoModal extends React.Component {
       return;
     }
 
-    photoStore.loadPhoto(hashData[1], hashData[2]);
-    this.props.photoModalStore.open(hashData[1], hashData[2]);
+    photoStore.loadPhoto(hashData[1], decodeURI(hashData[2]));
+    this.props.photoModalStore.open(hashData[1], decodeURI(hashData[2]));
   };
 
   render() {
