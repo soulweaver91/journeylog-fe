@@ -36,7 +36,7 @@ class PhotoCard extends React.Component {
               <div
                 className="PhotoCard__img-container"
                 style={{
-                  backgroundImage: `url(${photo.thumbUrl})`,
+                  backgroundImage: `url("${encodeURI(photo.thumbUrl)}")`,
                   width: size || undefined,
                   height: size || undefined
                 }}
