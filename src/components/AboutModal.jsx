@@ -30,7 +30,7 @@ class AboutModal extends React.Component {
           <p className="AboutModal__build">
             Build:{" "}
             <a
-              href={`${process.env.GIT_PUBLIC_REPOSITORY}/commit/${
+              href={`${process.env.GIT_PUBLIC_REPOSITORY}/tree/${
                 process.env.GIT_COMMITHASH
               }`}
               target="_blank"
