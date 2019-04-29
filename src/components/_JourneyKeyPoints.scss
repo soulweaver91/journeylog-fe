@@ -1,0 +1,24 @@
+.JourneyKeyPoints {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+
+  .svg-inline--fa {
+    font-size: 1.5em;
+    margin-bottom: 0.25em;
+  }
+
+  > * {
+    margin: 0 1em;
+    width: 3em;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    font-weight: bold;
+    align-items: center;
+  }
+}

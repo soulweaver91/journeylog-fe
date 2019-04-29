@@ -17,6 +17,8 @@ const Journey = types
     mapRoute: types.optional(types.array(MapPointVisit), []),
     photosCount: types.number,
     background: types.maybe(types.string),
+    dateStart: types.maybe(types.string),
+    dateEnd: types.maybe(types.string),
 
     pageRequestStatuses: types.optional(types.map(RequestStateType), {}),
 

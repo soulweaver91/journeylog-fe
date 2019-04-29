@@ -13,10 +13,10 @@ class FrontPageView extends React.Component {
           <title>Journeys – JourneyLog</title>
         </Helmet>
         <FrontPageNavbar />
-        <Container>
+        <Container className="FrontPageView">
           <Row>
             <Col xs="12">
-              <p className="center">Please select a journey below.</p>
+              <h1>All journeys</h1>
 
               <JourneyList />
             </Col>

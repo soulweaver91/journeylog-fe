@@ -18,29 +18,8 @@
       filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
     }
 
-    .JournalPage__key-points {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      list-style: none;
-      margin: 0.5em 0 0 0;
-      padding: 0;
-
-      .svg-inline--fa {
-        font-size: $font-size-base * 1.5;
-        margin-bottom: 0.25em;
-      }
-
-      > * {
-        margin: 0 1em;
-        width: 3em;
-        display: flex;
-        flex-direction: column;
-        font-size: $font-size-base * 1;
-        font-weight: bold;
-        align-items: center;
-      }
+    .JourneyKeyPoints {
+      font-size: $font-size-base;
     }
   }
 

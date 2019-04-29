@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UI_BREAKPOINTS } from "../util/Media";
 import JournalPagesList from "./JournalPagesList";
 import { observer } from "mobx-react";
+import JourneyKeyPoints from "./JourneyKeyPoints";
 
 @observer
 class JournalOverviewPage extends React.Component {
@@ -61,33 +62,7 @@ class JournalOverviewPage extends React.Component {
           }}
         >
           {journey.name}
-
-          <ul className="JournalPage__key-points">
-            <li title={journey.photosCount + " photos taken"}>
-              <FontAwesomeIcon icon="images" />
-              <span>{journey.photosCount}</span>
-              <span className="sr-only"> photos</span>
-            </li>
-            <li title={journey.journalPagesCount + " journal pages written"}>
-              <FontAwesomeIcon icon="book" />
-              <span>{journey.journalPagesCount}</span>
-              <span className="sr-only"> journal pages</span>
-            </li>
-            <li
-              title={
-                journey.uniqueVisitedLocations.length + " locations visited"
-              }
-            >
-              <FontAwesomeIcon icon="map-pin" />
-              <span>{journey.uniqueVisitedLocations.length}</span>
-              <span className="sr-only"> visited locations</span>
-            </li>
-            {/* <li title={journey.map_route.length + " points in timeline"}>
-              <FontAwesomeIcon icon="route" />
-              <span>{journey.map_route.length}</span>
-              <span className="sr-only"> map timeline points</span>
-            </li> */}
-          </ul>
+          <JourneyKeyPoints journey={journey} />
         </h2>
         <div className="JournalPage__nav">
           <Nav tabs>
