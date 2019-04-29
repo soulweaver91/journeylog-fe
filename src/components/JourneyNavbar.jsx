@@ -1,8 +1,8 @@
 import React from "react";
-import { Navbar, NavItem, NavLink, Nav, Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Navbar, NavItem, Nav, Button } from "reactstrap";
 import { inject, observer } from "mobx-react";
 import NavbarBrandItem from "./NavbarBrandItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index.es";
 
 @inject("aboutModalStore")
 @observer
@@ -13,13 +13,9 @@ class JourneyNavbar extends React.Component {
         <Nav navbar>
           <NavbarBrandItem />
           <NavItem>
-            <NavLink tag={Link} to="/">
-              Back
-            </NavLink>
-          </NavItem>
-          <NavItem>
             <span>
-              Journey: {this.props.journey ? this.props.journey.name : "???"}
+              <FontAwesomeIcon icon="chevron-right" />
+              {this.props.journey ? this.props.journey.name : "???"}
             </span>
           </NavItem>
         </Nav>

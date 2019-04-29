@@ -2,6 +2,10 @@
   .nav-item > span {
     padding: $nav-link-padding-y ($nav-link-padding-x / 2);
     display: inline-block;
+
+    .fa-chevron-right {
+      margin-right: 1em;
+    }
   }
 }
 
