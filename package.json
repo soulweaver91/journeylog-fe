@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^3.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^5.4.1",
@@ -42,7 +42,7 @@
     "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.3.1",
     "reactstrap": "^6.5.0",
-    "webpack-bundle-analyzer": "^3.0.3"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ --importer node_modules/node-sass-glob-importer/dist/cli.js -o src/",
