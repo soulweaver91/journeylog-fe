@@ -19,6 +19,7 @@ const Journey = types
     background: types.maybe(types.string),
     dateStart: types.maybe(types.string),
     dateEnd: types.maybe(types.string),
+    languages: types.array(types.string),
 
     pageRequestStatuses: types.optional(types.map(RequestStateType), {}),
 

@@ -4,20 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class JournalSection extends React.Component {
   render() {
-    const { location, detached, startTime, children } = this.props;
-
-    const hasOtherNames = location && location.names && location.names.size > 0;
+    const { location, detached, startTime, children, languages } = this.props;
 
     const otherNames = [];
-    if (hasOtherNames) {
+    if (location && location.names && location.names.size > 0) {
       location.names.forEach((nameObj, lang) => {
-        otherNames.push(
-          <span key={lang} lang={lang}>
-            {nameObj.name}
-          </span>
-        );
+        if (languages.includes(lang)) {
+          otherNames.push(
+            <span key={lang} lang={lang}>
+              {nameObj.name}
+            </span>
+          );
+        }
       });
     }
+    const hasOtherNames = otherNames.length > 0;
 
     return (
       <div

@@ -66,7 +66,8 @@ class LocationVisitTag extends Tag {
               ? DateTime.fromISO(visit.timestamp, {
                   zone: "UTC"
                 }).toLocaleString(DateTime.TIME_SIMPLE)
-              : undefined
+              : undefined,
+            languages: context.journey.languages
           };
 
           return (

@@ -45,6 +45,13 @@
       font-size: 1rem;
       font-style: normal;
     }
+
+    .JournalSection__location-other-names {
+      span + span:before {
+        margin: 0 0.5em;
+        content: "·";
+      }
+    }
   }
 
   &.JournalSection__with-other-names {
