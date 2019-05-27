@@ -17,11 +17,9 @@ class JourneyKeyPoints extends React.Component {
           <span>{journey.journalPagesCount}</span>
           <span className="sr-only"> journal pages</span>
         </li>
-        <li
-          title={journey.uniqueVisitedLocations.length + " locations visited"}
-        >
+        <li title={journey.visitedLocationsCount + " locations visited"}>
           <FontAwesomeIcon icon="map-pin" />
-          <span>{journey.uniqueVisitedLocations.length}</span>
+          <span>{journey.visitedLocationsCount}</span>
           <span className="sr-only"> visited locations</span>
         </li>
         {/* <li title={journey.map_route.length + " points in timeline"}>
