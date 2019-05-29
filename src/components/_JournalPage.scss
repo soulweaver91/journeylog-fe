@@ -72,5 +72,9 @@
 
   &.JournalPage--map .JournalPage__content {
     padding: 0;
+
+    .JournalPageMap__alert-container {
+      padding: ($grid-gutter-width / 2);
+    }
   }
 }

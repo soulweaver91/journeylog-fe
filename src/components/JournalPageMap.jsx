@@ -88,7 +88,11 @@ class JournalPageMap extends React.Component {
             ))}
           </GoogleMapComponent>
         ) : (
-          <Alert color="warning">No map for this journal page available.</Alert>
+          <div className="JournalPageMap__alert-container">
+            <Alert color="warning">
+              No map for this journal page available.
+            </Alert>
+          </div>
         )}
       </div>
     );
