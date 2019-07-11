@@ -1,8 +1,5 @@
-import { types } from "mobx-state-tree";
+import { getRoot, types } from "mobx-state-tree";
 import { Interval, DateTime } from "luxon";
-
-// TODO
-const HOME_TIMEZONE = "Europe/Helsinki";
 
 const PhotoBase = types
   .model("PhotoBase", {
@@ -39,7 +36,7 @@ const PhotoBase = types
     get homeTime() {
       return DateTime.fromISO(self.timestamp, {
         zone: "UTC"
-      }).setZone(HOME_TIMEZONE);
+      }).setZone(getRoot(self).configStore.config.HOME_TIMEZONE);
     }
   }));
 

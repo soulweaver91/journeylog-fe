@@ -41,7 +41,7 @@ class App extends Component {
         <Provider {...childStores}>
           <MatchMediaProvider breakpoints={UI_BREAKPOINTS}>
             <div className="App">
-              {store.hasErrors ? (
+              {store.hasErrors || !store.configStore.online ? (
                 <div className="App__whole-screen">
                   <div className="App__whole-screen-main-icon" />
                   <span>

@@ -6,6 +6,7 @@ import RequestState from "./util/RequestState";
 import PhotoModalStore from "./PhotoModalStore";
 import AboutModalStore from "./AboutModalStore";
 import PhotoStore from "./PhotoStore";
+import ConfigStore from "./ConfigStore";
 
 const RootStore = types
   .model("RootStore", {
@@ -14,24 +15,30 @@ const RootStore = types
     mapLocationStore: types.optional(MapLocationStore, {}),
     photoModalStore: types.optional(PhotoModalStore, {}),
     photoStore: types.optional(PhotoStore, {}),
-    aboutModalStore: types.optional(AboutModalStore, {})
+    aboutModalStore: types.optional(AboutModalStore, {}),
+    configStore: types.optional(ConfigStore, {})
   })
   .actions((self) => ({
     bootstrap: function() {
+      self.configStore.load();
       self.tagStore.loadTags();
       self.journeyStore.loadJourneys();
     }
   }))
   .views((self) => ({
     get isLoaded() {
-      return [self.journeyStore.status, self.tagStore.status].every(
-        (status) => status === RequestState.LOADED
-      );
+      return [
+        self.configStore.status,
+        self.journeyStore.status,
+        self.tagStore.status
+      ].every((status) => status === RequestState.LOADED);
     },
     get hasErrors() {
-      return [self.journeyStore.status, self.tagStore.status].some(
-        (status) => status === RequestState.ERROR
-      );
+      return [
+        self.configStore.status,
+        self.journeyStore.status,
+        self.tagStore.status
+      ].some((status) => status === RequestState.ERROR);
     }
   }));
 
