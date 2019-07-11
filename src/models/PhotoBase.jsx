@@ -15,36 +15,9 @@ const PhotoBase = types
     timezone: types.optional(types.string, "UTC"),
     width: types.number,
     height: types.number,
-    accessUrl: types.maybe(types.string),
-    thumbUrl: types.maybe(types.string),
+    accessUrl: types.maybeNull(types.string),
+    thumbUrl: types.maybeNull(types.string),
     journeySlug: types.string
-  })
-  .extend((self) => {
-    let localTime = null;
-    let homeTime = null;
-
-    return {
-      actions: {
-        postProcessSnapshot: (snapshot) => {
-          localTime = DateTime.fromISO(snapshot.timestamp, {
-            zone: "UTC"
-          }).setZone(self.timezone);
-          homeTime = DateTime.fromISO(snapshot.timestamp, {
-            zone: "UTC"
-          }).setZone(HOME_TIMEZONE);
-
-          return snapshot;
-        }
-      },
-      views: {
-        get localTime() {
-          return localTime;
-        },
-        get homeTime() {
-          return homeTime;
-        }
-      }
-    };
   })
   .views((self) => ({
     takenBetween(startTime, endTime) {
@@ -57,6 +30,16 @@ const PhotoBase = types
         })
       );
       return interval.contains(self.localTime);
+    },
+    get localTime() {
+      return DateTime.fromISO(self.timestamp, {
+        zone: "UTC"
+      }).setZone(self.timezone);
+    },
+    get homeTime() {
+      return DateTime.fromISO(self.timestamp, {
+        zone: "UTC"
+      }).setZone(HOME_TIMEZONE);
     }
   }));
 

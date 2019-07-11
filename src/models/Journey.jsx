@@ -8,7 +8,7 @@ import Api from "../util/Api";
 
 const Journey = types
   .model("Journey", {
-    slug: types.identifier(types.string),
+    slug: types.identifier,
     name: types.string,
     description: types.optional(types.string, ""),
     journalPages: types.array(types.union(JournalPageBase, JournalPage)),
@@ -17,9 +17,9 @@ const Journey = types
     mapRoute: types.optional(types.array(MapPointVisit), []),
     photosCount: types.number,
     visitedLocationsCount: types.number,
-    background: types.maybe(types.string),
-    dateStart: types.maybe(types.string),
-    dateEnd: types.maybe(types.string),
+    background: types.maybeNull(types.string),
+    dateStart: types.maybeNull(types.string),
+    dateEnd: types.maybeNull(types.string),
     languages: types.array(types.string),
 
     pageRequestStatuses: types.optional(types.map(RequestStateType), {}),

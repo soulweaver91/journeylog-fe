@@ -1,9 +1,9 @@
 import { types } from "mobx-state-tree";
 
 const Tag = types.model("Tag", {
-  id: types.identifier(types.number),
+  id: types.identifierNumber,
   name: types.map(types.string, types.string),
-  children: types.maybe(types.array(types.late(() => Tag)))
+  children: types.optional(types.array(types.late(() => Tag)), [])
 });
 
 export default Tag;

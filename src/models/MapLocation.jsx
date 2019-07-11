@@ -8,14 +8,14 @@ import Util from "../util/Util";
 
 const MapLocation = types
   .model("MapLocation", {
-    id: types.identifier(types.number),
+    id: types.identifierNumber,
     name: types.string,
     names: types.optional(types.map(MapLocationName), {}),
-    latitude: types.maybe(types.number),
-    longitude: types.maybe(types.number),
+    latitude: types.maybeNull(types.number),
+    longitude: types.maybeNull(types.number),
     // using LocationIconType is too stringent; the model is outright rejected if the value is not known
-    type: types.maybe(types.string),
-    color: types.maybe(types.string)
+    type: types.maybeNull(types.string),
+    color: types.maybeNull(types.string)
   })
   .preProcessSnapshot(({ latitude, longitude, ...rest }) => ({
     ...rest,

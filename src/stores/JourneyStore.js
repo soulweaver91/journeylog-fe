@@ -7,7 +7,7 @@ import Api from "../util/Api";
 const JourneyStore = types
   .model("JourneyStore", {
     journeys: types.array(Journey),
-    status: types.maybe(RequestStateType, RequestState.UNINITIALIZED)
+    status: types.optional(RequestStateType, RequestState.UNINITIALIZED)
   })
   .views((self) => {
     return {

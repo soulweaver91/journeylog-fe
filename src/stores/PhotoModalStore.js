@@ -3,9 +3,9 @@ import Util from "../util/Util";
 
 const PhotoModalStore = types
   .model("PhotoModalStore", {
-    isOpen: types.boolean,
-    journeySlug: types.maybe(types.string),
-    filename: types.maybe(types.string)
+    isOpen: types.optional(types.boolean, false),
+    journeySlug: types.maybeNull(types.string),
+    filename: types.maybeNull(types.string)
   })
   .actions((self) => ({
     open: (journeySlug, filename) => {

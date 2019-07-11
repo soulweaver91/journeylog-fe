@@ -13,8 +13,8 @@ const PhotoStore = types
       types.map(
         types.model({
           links: types.model({
-            next: types.maybe(types.string),
-            previous: types.maybe(types.string)
+            next: types.maybeNull(types.string),
+            previous: types.maybeNull(types.string)
           }),
           results: types.array(types.reference(Photo)),
           count: types.number,

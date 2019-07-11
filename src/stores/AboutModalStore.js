@@ -1,8 +1,8 @@
 import { types } from "mobx-state-tree";
 
 const AboutModalStore = types
-  .model("PhotoModalStore", {
-    isOpen: types.boolean
+  .model("AboutModalStore", {
+    isOpen: types.optional(types.boolean, false)
   })
   .actions((self) => ({
     open: () => {

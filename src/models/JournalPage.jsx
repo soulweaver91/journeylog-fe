@@ -6,7 +6,7 @@ import Journey from "./Journey";
 const JournalPage = JournalPageBase.named("JournalPage")
   .props({
     text: types.string,
-    photos: types.maybe(types.array(PhotoBase))
+    photos: types.optional(types.array(PhotoBase), [])
   })
   .views((self) => ({
     findPhoto(id) {

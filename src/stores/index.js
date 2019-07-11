@@ -9,12 +9,12 @@ import PhotoStore from "./PhotoStore";
 
 const RootStore = types
   .model("RootStore", {
-    journeyStore: types.maybe(JourneyStore, {}),
-    tagStore: types.maybe(TagStore, {}),
-    mapLocationStore: types.maybe(MapLocationStore, {}),
-    photoModalStore: types.maybe(PhotoModalStore, {}),
-    photoStore: types.maybe(PhotoStore, {}),
-    aboutModalStore: types.maybe(AboutModalStore, {})
+    journeyStore: types.optional(JourneyStore, {}),
+    tagStore: types.optional(TagStore, {}),
+    mapLocationStore: types.optional(MapLocationStore, {}),
+    photoModalStore: types.optional(PhotoModalStore, {}),
+    photoStore: types.optional(PhotoStore, {}),
+    aboutModalStore: types.optional(AboutModalStore, {})
   })
   .actions((self) => ({
     bootstrap: function() {

@@ -5,17 +5,17 @@ import PhotoBase from "./PhotoBase";
 
 const Photo = PhotoBase.named("Photo")
   .props({
-    id: types.identifier(types.number),
-    latitude: types.maybe(types.number),
-    longitude: types.maybe(types.number),
-    description: types.maybe(types.string),
+    id: types.identifierNumber,
+    latitude: types.maybeNull(types.number),
+    longitude: types.maybeNull(types.number),
+    description: types.maybeNull(types.string),
     tags: types.optional(types.array(types.reference(Tag)), []),
-    isoSpeed: types.maybe(types.string),
-    focalLength: types.maybe(types.string),
-    fValue: types.maybe(types.string),
-    exposure: types.maybe(types.string),
-    cameraMake: types.maybe(types.string),
-    cameraModel: types.maybe(types.string),
+    isoSpeed: types.maybeNull(types.string),
+    focalLength: types.maybeNull(types.string),
+    fValue: types.maybeNull(types.string),
+    exposure: types.maybeNull(types.string),
+    cameraMake: types.maybeNull(types.string),
+    cameraModel: types.maybeNull(types.string),
     flashFired: types.optional(types.boolean, false),
     flashManual: types.optional(types.boolean, false)
   })

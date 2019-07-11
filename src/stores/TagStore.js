@@ -7,7 +7,7 @@ import RequestState, { RequestStateType } from "./util/RequestState";
 const TagStore = types
   .model("TagStore", {
     tags: types.array(Tag),
-    status: types.maybe(RequestStateType, RequestState.UNINITIALIZED)
+    status: types.optional(RequestStateType, RequestState.UNINITIALIZED)
   })
   .actions((self) => ({
     loadTags: flow(function*() {

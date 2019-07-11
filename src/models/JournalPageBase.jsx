@@ -9,9 +9,9 @@ export const JournalPageType = {
 const JournalPageBase = types
   .model("JournalPageBase", {
     slug: types.string,
-    dateStart: types.maybe(types.string),
-    dateEnd: types.maybe(types.string),
-    name: types.maybe(types.string),
+    dateStart: types.maybeNull(types.string),
+    dateEnd: types.maybeNull(types.string),
+    name: types.maybeNull(types.string),
     photosCount: types.number,
     type: types.enumeration(Object.values(JournalPageType)),
     disabledModules: types.optional(types.array(types.number), [])
