@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.3.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^5.9.0",
@@ -13,7 +13,7 @@
     "axios": "^0.19.0",
     "bbcode-to-react": "^0.2.9",
     "bootstrap": "^4.3.1",
-    "chokidar-cli": "^1.2.2",
+    "chokidar-cli": "^2.1.0",
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "customize-cra": "^0.2.14",
