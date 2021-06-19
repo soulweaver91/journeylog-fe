@@ -21,8 +21,8 @@ class AboutModal extends React.Component {
             <a href="https://soulweaver.fi/" target="_blank" rel="noopener">
               Soulweaver
             </a>{" "}
-            to accomodate the photos of their trip in Japan in the April of the
-            same year. The goal has been to be able to reuse the same journal
+            to accomodate the photos of her trip in Japan in the April of the
+            same year. The primary goal was to be able to reuse the same journal
             and gallery functionality on later journeys around the world in the
             coming years.
           </p>
@@ -30,9 +30,7 @@ class AboutModal extends React.Component {
           <p className="AboutModal__build">
             Build:{" "}
             <a
-              href={`${process.env.GIT_PUBLIC_REPOSITORY}/tree/${
-                process.env.GIT_COMMITHASH
-              }`}
+              href={`${process.env.GIT_PUBLIC_REPOSITORY}/tree/${process.env.GIT_COMMITHASH}`}
               target="_blank"
               rel="noopener"
             >
