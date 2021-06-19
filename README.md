@@ -8,9 +8,10 @@ Requirements
 ------------
 
 - A recent version of Node.js
-- A [Font Awesome Pro](https://fontawesome.com/pro) license and their private repositories properly set up in your
-  npm configuration. You might be able to substitute it with the free FA license, but I haven't tried that out, so
-  no guarantees there.
+- A [Font Awesome 5 Pro](https://fontawesome.com/plans) license. Download their `pro-solid-svg-icons` package, extract
+  the `package` folder inside that archive to `src/proprietary`, and rename it to match the archive name sans the
+  version number (i.e. `fortawesome-pro-solid-svg-icons`). You might be able to substitute it with a free FA icon
+  package with some work, but I haven't tried that out, so no guarantees there.
 - `npm install`
 
 Development
