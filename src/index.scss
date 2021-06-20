@@ -36,31 +36,6 @@ body {
   padding: 0 $navbar-padding-x;
   flex-shrink: 0;
 
-  a.navbar-brand {
-    margin-left: -$navbar-padding-x;
-    margin-right: 0;
-    padding: ($navbar-brand-padding-y + $navbar-padding-y)
-      ($navbar-nav-link-padding-x * 2)
-      ($navbar-brand-padding-y + $navbar-padding-y) 5em;
-    background-image: url("assets/journeylog-white.svg");
-    background-position: -0.75em -0.75em;
-    background-repeat: no-repeat;
-    background-size: 5.5em 5.5em;
-
-    &:hover {
-      color: $navbar-dark-hover-color;
-      background-color: $primary;
-      text-decoration: none;
-    }
-
-    &:active,
-    &:focus {
-      color: $navbar-dark-active-color;
-      background-color: $primary;
-      text-decoration: none;
-    }
-  }
-
   &.navbar-dark .navbar-nav {
     .nav-link,
     .btn-link {
@@ -89,6 +64,13 @@ body {
     .nav-item > span {
       padding: ($navbar-padding-y + $navbar-padding-y)
         $navbar-nav-link-padding-x;
+    }
+  }
+
+  @include media-breakpoint-only(xs) {
+    &,
+    .navbar-nav {
+      flex-wrap: wrap;
     }
   }
 }

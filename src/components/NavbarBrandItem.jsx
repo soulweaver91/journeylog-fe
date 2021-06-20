@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class NavbarBrandItem extends React.PureComponent {
   render() {
     return (
-      <NavItem>
+      <NavItem className="NavbarBrandItem">
         <NavbarBrand tag={Link} to="/">
           JourneyLog
         </NavbarBrand>

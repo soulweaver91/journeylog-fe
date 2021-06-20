@@ -1,0 +1,35 @@
+.NavbarBrandItem {
+  a.navbar-brand {
+    margin-left: -$navbar-padding-x;
+    margin-right: 0;
+    padding: ($navbar-brand-padding-y + $navbar-padding-y)
+      ($navbar-nav-link-padding-x * 2)
+      ($navbar-brand-padding-y + $navbar-padding-y) 5em;
+    background-image: url("assets/journeylog-white.svg");
+    background-position: -0.75em -0.75em;
+    background-repeat: no-repeat;
+    background-size: 5.5em 5.5em;
+
+    &:hover {
+      background-color: $primary;
+      text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      color: $navbar-dark-active-color;
+      background-color: $primary;
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-only(xs) {
+    width: 100%;
+
+    a.navbar-brand {
+      display: block;
+      width: auto;
+      margin-right: -1rem;
+    }
+  }
+}
