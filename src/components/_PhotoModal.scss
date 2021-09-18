@@ -34,23 +34,33 @@
     }
   }
 
-  .PhotoModal__photo {
-    overflow-x: auto;
-    overflow-y: auto;
-    display: flex;
+  .PhotoModal__photo-area {
     background-color: darken($primary, 10%);
+    display: flex;
+    overflow: hidden;
 
-    img {
-      max-width: 100%;
-      image-orientation: from-image;
-      margin: auto;
+    .PhotoModal__photo {
+      overflow-x: auto;
+      overflow-y: auto;
+      display: flex;
+      flex: 1;
+
+      img {
+        max-width: 100%;
+        image-orientation: from-image;
+        margin: auto;
+      }
+
+      span {
+        color: color-yiq($primary);
+        margin: auto;
+        padding: 6em;
+        text-align: center;
+      }
     }
 
-    span {
-      color: color-yiq($primary);
-      margin: auto;
-      padding: 6em;
-      text-align: center;
+    .PhotoModal__nav {
+      margin: 1px 0;
     }
   }
 

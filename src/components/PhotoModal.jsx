@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Col,
   ListGroup,
   ListGroupItem,
@@ -34,7 +35,7 @@ class PhotoModal extends React.Component {
   }
 
   loadPhotoFromHash = () => {
-    const { photoStore } = this.props;
+    const { photoStore, photoModalStore } = this.props;
 
     const hashData = window.document.location.hash.match(photoHashRegex);
     if (!hashData) {
@@ -42,7 +43,7 @@ class PhotoModal extends React.Component {
     }
 
     photoStore.loadPhoto(hashData[1], decodeURI(hashData[2]));
-    this.props.photoModalStore.open(hashData[1], decodeURI(hashData[2]));
+    photoModalStore.open(hashData[1], decodeURI(hashData[2]));
   };
 
   render() {
@@ -51,6 +52,22 @@ class PhotoModal extends React.Component {
 
     const photo = photoStore.getPhoto(journeySlug, filename);
     const state = photoStore.requestStatuses.get(`${journeySlug}/${filename}`);
+
+    let prevPhoto = null;
+    let nextPhoto = null;
+    const context = photoModalStore.context?.get();
+    const contextPhotos = context?.results;
+    if (!!contextPhotos) {
+      const currentPosition = contextPhotos.findIndex((r) => r === photo);
+      if (currentPosition !== -1) {
+        prevPhoto =
+          currentPosition > 0 ? contextPhotos[currentPosition - 1] : null;
+        nextPhoto =
+          currentPosition < contextPhotos.length - 1
+            ? contextPhotos[currentPosition + 1]
+            : null;
+      }
+    }
 
     return (
       <Modal isOpen={photoModalStore.isOpen} className="PhotoModal">
@@ -62,17 +79,49 @@ class PhotoModal extends React.Component {
             state={state}
             loaded={() => (
               <Row>
-                <Col xs="12" md="9" className="PhotoModal__photo">
-                  {photo.confidentiality === 0 ? (
-                    <img src={photo.accessUrl} alt="" />
-                  ) : (
-                    <span>
-                      Viewing of this photo is restricted at this time because
-                      it contains sensitive personal details or other content
-                      deemed not shareable to the general public. Authorized
-                      people may view this content later once the support for
-                      that feature has been added.
-                    </span>
+                <Col xs="12" md="9" className="PhotoModal__photo-area">
+                  {prevPhoto && (
+                    <Button
+                      className="PhotoModal__nav PhotoModal__nav-prev"
+                      color="primary"
+                      onClick={() =>
+                        photoModalStore.open(
+                          journeySlug,
+                          prevPhoto.filename,
+                          context
+                        )
+                      }
+                    >
+                      <FontAwesomeIcon icon="chevron-left" />
+                    </Button>
+                  )}
+                  <div className="PhotoModal__photo">
+                    {photo.confidentiality === 0 ? (
+                      <img key={photo.accessUrl} src={photo.accessUrl} alt="" />
+                    ) : (
+                      <span>
+                        Viewing of this photo is restricted at this time because
+                        it contains sensitive personal details or other content
+                        deemed not shareable to the general public. Authorized
+                        people may view this content later once the support for
+                        that feature has been added.
+                      </span>
+                    )}
+                  </div>
+                  {nextPhoto && (
+                    <Button
+                      className="PhotoModal__nav PhotoModal__nav-next"
+                      color="primary"
+                      onClick={() =>
+                        photoModalStore.open(
+                          journeySlug,
+                          nextPhoto.filename,
+                          context
+                        )
+                      }
+                    >
+                      <FontAwesomeIcon icon="chevron-right" />
+                    </Button>
                   )}
                 </Col>
                 <Col xs="12" md="3" className="PhotoModal__attributes">
@@ -118,9 +167,7 @@ class PhotoModal extends React.Component {
                         <ListGroupItemHeading>Location</ListGroupItemHeading>
                         <ListGroupItemText>
                           <a
-                            href={`https://www.google.com/maps/place/${
-                              photo.latitude
-                            },${photo.longitude}/@18z`}
+                            href={`https://www.google.com/maps/place/${photo.latitude},${photo.longitude}/@18z`}
                             // eslint-disable-next-line react/jsx-no-target-blank
                             target="_blank"
                           >

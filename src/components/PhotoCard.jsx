@@ -9,7 +9,7 @@ import { UI_BREAKPOINTS } from "../util/Media";
 @observer
 class PhotoCard extends React.Component {
   render() {
-    const { photo, photoModalStore, size } = this.props;
+    const { photo, photoModalStore, size, context } = this.props;
 
     if (!photo) {
       return null;
@@ -21,7 +21,9 @@ class PhotoCard extends React.Component {
           href={photoModalStore.getHash(photo.journeySlug, photo.filename)}
           onClick={(e) => {
             e.preventDefault();
-            photoModalStore.open(photo.journeySlug, photo.filename);
+            photoModalStore.open(photo.journeySlug, photo.filename, {
+              context
+            });
           }}
           style={{
             width: size || undefined

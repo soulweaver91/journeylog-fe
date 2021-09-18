@@ -96,7 +96,7 @@ class Gallery extends React.Component {
                 )}
               <div className="Gallery__photos">
                 {result.results.map((photo) => (
-                  <PhotoCard key={photo.name} photo={photo} />
+                  <PhotoCard key={photo.name} photo={photo} context={result} />
                 ))}
               </div>
               {result.results.length === 0 && (
