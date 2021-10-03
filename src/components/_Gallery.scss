@@ -1,9 +1,11 @@
+@use "sass:math";
+
 .Gallery {
   .Gallery__filters {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    grid-row-gap: $spacer / 2;
+    grid-row-gap: math.div($spacer, 2);
 
     .Filter {
       margin: 0 1em 0 0;

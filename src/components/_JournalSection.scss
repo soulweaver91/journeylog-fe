@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .JournalSection {
   $journal-location-line-width: 0.15em;
 
@@ -74,10 +76,10 @@
     background-image: linear-gradient(
       to right,
       transparent,
-      transparent (2em - $journal-location-line-width / 2),
-      $gray-500 (2em - $journal-location-line-width / 2),
-      $gray-500 (2em + $journal-location-line-width / 2),
-      transparent (2em + $journal-location-line-width / 2),
+      transparent (2em - math.div($journal-location-line-width, 2)),
+      $gray-500 (2em - math.div($journal-location-line-width, 2)),
+      $gray-500 (2em + math.div($journal-location-line-width, 2)),
+      transparent (2em + math.div($journal-location-line-width, 2)),
       transparent
     );
   }

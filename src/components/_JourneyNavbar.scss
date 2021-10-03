@@ -1,6 +1,8 @@
+@use "sass:math";
+
 .navbar-nav {
   .nav-item > span {
-    padding: $nav-link-padding-y ($nav-link-padding-x / 2);
+    padding: $nav-link-padding-y math.div($nav-link-padding-x, 2);
     display: inline-block;
 
     .fa-chevron-right {

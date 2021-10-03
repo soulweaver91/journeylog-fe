@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .JournalPage {
   display: flex;
   flex-direction: column;
@@ -33,7 +35,7 @@
   }
 
   .JournalPage__content {
-    padding: ($grid-gutter-width / 2);
+    padding: math.div($grid-gutter-width, 2);
     height: 100%;
 
     @include media-breakpoint-up(md) {
@@ -74,7 +76,7 @@
     padding: 0;
 
     .JournalPageMap__alert-container {
-      padding: ($grid-gutter-width / 2);
+      padding: math.div($grid-gutter-width, 2);
     }
   }
 }
