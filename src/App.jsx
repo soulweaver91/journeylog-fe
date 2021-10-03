@@ -7,8 +7,7 @@ import RootStore from "./stores";
 import BrowserSupportBar from "./components/BrowserSupportBar";
 import AboutModal from "./components/AboutModal";
 import DefaultSpinner from "./components/loader/DefaultSpinner";
-import { MatchMediaProvider } from "mobx-react-matchmedia";
-import { UI_BREAKPOINTS } from "./util/Media";
+import { UI_BREAKPOINTS, MatchMediaProvider } from "./util/Media";
 
 const store = RootStore.create({
   journeyStore: {
